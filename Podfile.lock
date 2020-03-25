@@ -1,0 +1,70 @@
+PODS:
+  - Alamofire (5.0.2)
+  - Charts (3.4.0):
+    - Charts/Core (= 3.4.0)
+  - Charts/Core (3.4.0)
+  - IQKeyboardManagerSwift (6.5.5)
+  - KeychainAccess (4.1.0)
+  - MBProgressHUD (1.2.0)
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/Default (9.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (9.0.0)
+  - OHHTTPStubs/Swift (9.0.0):
+    - OHHTTPStubs/Default
+  - Parchment (2.0.1)
+  - SwiftAudio (0.11.2)
+  - SwiftLint (0.39.1)
+  - TLPhotoPicker (2.0.11)
+  - YoutubePlayer-in-WKWebView (0.3.4)
+
+DEPENDENCIES:
+  - Alamofire
+  - Charts
+  - IQKeyboardManagerSwift
+  - KeychainAccess
+  - MBProgressHUD
+  - OHHTTPStubs/Swift
+  - Parchment
+  - SwiftAudio
+  - SwiftLint
+  - TLPhotoPicker
+  - YoutubePlayer-in-WKWebView
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Charts
+    - IQKeyboardManagerSwift
+    - KeychainAccess
+    - MBProgressHUD
+    - OHHTTPStubs
+    - Parchment
+    - SwiftAudio
+    - SwiftLint
+    - TLPhotoPicker
+    - YoutubePlayer-in-WKWebView
+
+SPEC CHECKSUMS:
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
+  Parchment: 00cb7d0d0a38f5a4a7e089ec59637b970a58c0f0
+  SwiftAudio: 217f5f184b27a0e25ff0fe7647021f05a21c06c9
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+  TLPhotoPicker: a5c339732b8326bb16cbb4e00ed01a86f2bfbbb3
+  YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
+
+PODFILE CHECKSUM: 3faf1a29389e75cad43b84a45e20a6724ebf5bc2
+
+COCOAPODS: 1.8.3
