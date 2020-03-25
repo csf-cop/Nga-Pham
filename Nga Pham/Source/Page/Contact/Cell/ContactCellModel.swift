@@ -13,9 +13,9 @@ final class ContactCellModel {
     var fullName: String
     var avatarData: Data?
 
-    init(model: CoreContact) {
+    init(model: ContactModel) {
         let defaultImage: UIImage = #imageLiteral(resourceName: "img_no_image")
-        fullName = model.fullName
-        avatarData = (model.re_Avatar?.imageData).unwrapped(or: defaultImage.toData())
+        fullName = model.contact.fullName
+        avatarData = (model.avatar?.imageData).unwrapped(or: defaultImage.toData())
     }
 }

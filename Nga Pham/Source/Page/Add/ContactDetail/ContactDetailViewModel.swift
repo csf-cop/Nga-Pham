@@ -11,16 +11,16 @@ import UIKit.UIImage
 import CoreData
 
 final class ContactDetailViewModel: BaseViewModel {
-    var model: CoreContact
+    var model: ContactModel
 
-    init(model: CoreContact) {
+    init(model: ContactModel) {
         self.model = model
     }
 }
 
 extension ContactDetailViewModel {
     func deleteContact() {
-        model.delete(completed: { err in
+        model.contact.delete(completed: { err in
             if err == nil {
                 print("Delete success")
             } else {

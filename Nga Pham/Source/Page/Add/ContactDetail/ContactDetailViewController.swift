@@ -39,11 +39,11 @@ final class ContactDetailViewController: UIViewController {
 extension ContactDetailViewController {
     private func updateData(model: ContactDetailViewModel) {
         let defaultImage: UIImage = #imageLiteral(resourceName: "img_no_image")
-        if let imageData: Data = (model.model.re_Avatar?.imageData).unwrapped(or: defaultImage.toData()) {
+        if let imageData: Data = (model.model.avatar?.imageData).unwrapped(or: defaultImage.toData()) {
             avatarImageView.image = UIImage(data: imageData)
         } else {
             avatarImageView.image = #imageLiteral(resourceName: "img_no_image")
         }
-        fullNameLabel.text = model.model.fullName
+        fullNameLabel.text = model.model.contact.fullName
     }
 }

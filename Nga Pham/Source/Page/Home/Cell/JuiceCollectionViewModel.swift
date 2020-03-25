@@ -13,8 +13,8 @@ final class JuiceCollectionViewModel {
     let juiceDescription: String
     let juiceImage: [CoreImage]
 
-    init(model: CoreJuice) {
-        juiceDescription = model.juiceDescription
-        juiceImage = (model.re_Image as? [CoreImage]).unwrapped(or: [])
+    init(model: JuiceModel) {
+        juiceDescription = model.juice.juiceDescription.unwrapped(or: "")
+        juiceImage = model.morePhotos
     }
 }

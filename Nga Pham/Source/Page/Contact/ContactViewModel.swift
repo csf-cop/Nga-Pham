@@ -19,7 +19,9 @@ extension ContactViewModel {
     }
 
     func modelForCell(at: IndexPath) -> ContactCellModel {
-        return ContactCellModel(model: contacts[safe: at.row].unwrapped(or: CoreContact()))
+        var contact: ContactModel = ContactModel()
+        contact.contact = contacts[safe: at.row].unwrapped(or: CoreContact())
+        return ContactCellModel(model: contact)
     }
 
     func contactModel(at: IndexPath) -> ContactDetailViewModel {

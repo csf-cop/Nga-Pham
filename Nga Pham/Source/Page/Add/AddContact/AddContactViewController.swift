@@ -30,6 +30,9 @@ final class AddContactViewController: UIViewController {
         configUI()
         let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
         avatarImageView.addGestureRecognizer(gesture)
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     @IBAction func addContactTouchUpInside(_ sender: UIButton) {
@@ -38,8 +41,8 @@ final class AddContactViewController: UIViewController {
         let phone: String = phoneTextField.text.unwrapped(or: "")
         let note: String = noteTextView.text
 
-        if let addedContact: CoreContact = viewModel.addContact(name: name, address: address, phone: phone, note: note) {
-            notificationCenter.post(name: .ReloadContacts, object: addedContact)
+        viewModel.addContact(name: name, address: address, phone: phone, note: note) { _ in 
+            notificationCenter.post(name: .ReloadContacts, object: nil)
         }
         self.dismiss(animated: true)
     }

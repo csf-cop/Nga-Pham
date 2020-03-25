@@ -13,6 +13,7 @@ import UIKit
 class BaseViewModel {
     var appDelegate: AppDelegate?
     var context: NSManagedObjectContext?
+    var handleErrorMessage: ((Error) -> Void)?
     init() {
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         guard let appDelegate: AppDelegate = appDelegate else { return }
