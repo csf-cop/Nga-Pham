@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ContactViewCell" customModule="Nga_Pham" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="144" height="233"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="144" height="233"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JSR-QW-jCN">
+                        <rect key="frame" x="0.0" y="44" width="144" height="144"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="JSR-QW-jCN" secondAttribute="height" id="Y3x-sA-OAL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên liên lạc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-lY-FEN">
+                        <rect key="frame" x="29.5" y="203" width="85.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="r5a-lY-FEN" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="FMh-Nu-7tf"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="r5a-lY-FEN" secondAttribute="trailing" constant="5" id="HkY-l9-QiQ"/>
+                <constraint firstItem="JSR-QW-jCN" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="J3H-L2-e9b"/>
+                <constraint firstItem="r5a-lY-FEN" firstAttribute="top" secondItem="JSR-QW-jCN" secondAttribute="bottom" constant="15" id="VrZ-9m-dSz"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="JSR-QW-jCN" secondAttribute="leading" id="fMG-iA-DCr"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="JSR-QW-jCN" secondAttribute="top" id="oFG-EC-lDo"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="144" height="233"/>
+            <connections>
+                <outlet property="avatarImageView" destination="JSR-QW-jCN" id="rGO-bm-kNQ"/>
+                <outlet property="contactNameLabel" destination="r5a-lY-FEN" id="ayi-vl-N0q"/>
+            </connections>
+            <point key="canvasLocation" x="200.00000000000003" y="205.91517857142856"/>
+        </collectionViewCell>
+    </objects>
+</document>
