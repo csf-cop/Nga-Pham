@@ -10,22 +10,22 @@ import Foundation
 import UIKit
 
 final class ContactViewModel: BaseViewModel {
-    private var contacts: [CoreContact] = []
+    private var contactsModel: [ContactModel] = []
 }
 
 extension ContactViewModel {
     func numberOfItemsInSection() -> Int {
-        return contacts.count
+        return contactsModel.count
     }
 
     func modelForCell(at: IndexPath) -> ContactCellModel {
-        var contact: ContactModel = ContactModel()
-        contact.contact = contacts[safe: at.row].unwrapped(or: CoreContact())
+        let contact: ContactModel = contactsModel[safe: at.row].unwrapped(or: ContactModel(contact: CoreContact(), photo: nil))
         return ContactCellModel(model: contact)
     }
 
     func contactModel(at: IndexPath) -> ContactDetailViewModel {
-        return ContactDetailViewModel(model: contacts[safe: at.row].unwrapped(or: CoreContact()))
+        return ContactDetailViewModel(model: ContactModel())
+//            contacts[safe: at.row].unwrapped(or: CoreContact()))
     }
 
     func loadContactsData() {
@@ -33,7 +33,7 @@ extension ContactViewModel {
             guard let result: [CoreContact] = result as? [CoreContact] else {
                 return
             }
-            self.contacts = result
+            self.generateModel(data: result)
             #warning("Customize source code - after.")
 //            if self.contacts.isEmpty {
 //                self.contacts = result
@@ -49,11 +49,15 @@ extension ContactViewModel {
         }
     }
 
-    func additionalContact(contact: CoreContact) {
-        contacts.append(contact)
-    }
+    #warning("Customize source code.")
+//    func additionalContact(contact: CoreContact) {
+//        contacts.append(contact)
+//    }
 }
 
 extension ContactViewModel {
-
+    private func generateModel(data: [CoreContact]) {
+        if data.isEmpty { return }
+//        let avatarImages: [CoreImage] = 
+    }
 }

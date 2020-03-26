@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18E227" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CoreContact" representedClassName="CoreContact" isAbstract="YES" syncable="YES">
+    <entity name="CoreContact" representedClassName="CoreContact" syncable="YES">
         <attribute name="addressMap" optional="YES" attributeType="String"/>
         <attribute name="addressOther" optional="YES" attributeType="String"/>
         <attribute name="addressPrimary" attributeType="String" defaultValueString=""/>
@@ -11,30 +11,30 @@
         <attribute name="noteInfo" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="CoreImage" representedClassName="CoreImage" isAbstract="YES" syncable="YES">
+    <entity name="CoreImage" representedClassName="CoreImage" syncable="YES">
         <attribute name="id" attributeType="String" defaultValueString="1" preserveAfterDeletion="YES"/>
-        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES" storedInTruthFile="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="imageDateCreate" attributeType="Date" minDateTimeInterval="599562000" defaultDateTimeInterval="606520800" usesScalarValueType="NO"/>
         <attribute name="imageFileSize" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String"/>
         <attribute name="imageTypeFor" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isDelete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CoreJuice" representedClassName="CoreJuice" isAbstract="YES" syncable="YES">
+    <entity name="CoreJuice" representedClassName="CoreJuice" syncable="YES">
         <attribute name="dateCreate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isDelete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="juiceDescription" optional="YES" attributeType="String"/>
-        <attribute name="juiceMorePhotos" attributeType="Transformable"/>
+        <attribute name="juiceMorePhotos" attributeType="Binary"/>
         <attribute name="juiceName" optional="YES" attributeType="String"/>
         <attribute name="juicePhotoId" optional="YES" attributeType="String"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="unitId" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="CoreOrder" representedClassName="CoreOrder" isAbstract="YES" syncable="YES">
+    <entity name="CoreOrder" representedClassName="CoreOrder" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="CoreUnit" representedClassName="CoreUnit" isAbstract="YES" syncable="YES" codeGenerationType="class">
+    <entity name="CoreUnit" representedClassName="CoreUnit" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isDelete" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="unitName" optional="YES" attributeType="String"/>

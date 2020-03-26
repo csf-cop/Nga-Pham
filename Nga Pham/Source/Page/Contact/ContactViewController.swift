@@ -26,6 +26,7 @@ final class ContactViewController: UIViewController {
                                                                      action: #selector(self.addContact))
         addNewImageView.addGestureRecognizer(gesture)
 
+        // MARK: Observer contact changing.
         notificationCenter.addObserver(self,
                                        selector: #selector(reloadContacts),
                                        name: Notification.Name.ReloadContacts,
@@ -59,6 +60,7 @@ extension ContactViewController {
     }
 
     @objc private func reloadContacts(_ notification: Notification) {
+        #warning("Using notification Observer contact change.")
 //        DispatchQueue.main.async { [weak self] in
 //            guard let this: ContactViewController = self else { return }
 //            if let data: [String: Any] = notification.object as? [String: Any],

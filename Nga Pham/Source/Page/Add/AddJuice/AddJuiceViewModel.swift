@@ -47,7 +47,7 @@ extension AddJuiceViewModel {
     func addJuice(name: String, description: String, unit: String) {
         guard let context: NSManagedObjectContext = self.context else { return }
 
-        var avatar: CoreImage = CoreImage(context: context)
+        let avatar: CoreImage = CoreImage(context: context)
         avatar.id = App.getNextImageKey(type: .image)
         avatar.imageData = juiceImage[0].toData()
         avatar.imageFileSize = Float(juiceImage[0].sizeInMB)
@@ -60,13 +60,12 @@ extension AddJuiceViewModel {
             return
         }
 
-        var juice: CoreJuice = CoreJuice(context: context)
+        let juice: CoreJuice = CoreJuice(context: context)
         juice.id = App.getNextImageKey(type: .juice)
         juice.juiceName = name
         juice.juiceDescription = description
         juice.isDelete = false
         juice.juicePhotoId = avatar.id
-//        juice.re_Image = uploadableImages
     }
 
     func takePhoto(image: UIImage) {
