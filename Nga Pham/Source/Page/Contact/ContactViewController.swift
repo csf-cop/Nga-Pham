@@ -9,12 +9,10 @@
 import UIKit
 import CoreData
 
-final class ContactViewController: UIViewController {
+final class ContactViewController: ViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var addNewImageView: UIImageView!
-
-    var viewModel: ContactViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +24,7 @@ final class ContactViewController: UIViewController {
                                                                      action: #selector(self.addContact))
         addNewImageView.addGestureRecognizer(gesture)
 
+        // MARK: Observer contact changing.
         notificationCenter.addObserver(self,
                                        selector: #selector(reloadContacts),
                                        name: Notification.Name.ReloadContacts,
@@ -53,12 +52,17 @@ extension ContactViewController {
     }
 
     private func loadContactData() {
-        guard let viewModel: ContactViewModel = viewModel else { return }
-        viewModel.loadContactsData()
+        guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return }
+        viewModel.loadContactsData { [] isSuccess in
+            if isSuccess {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
         collectionView.reloadData()
     }
 
     @objc private func reloadContacts(_ notification: Notification) {
+        #warning("Using notification Observer contact change.")
 //        DispatchQueue.main.async { [weak self] in
 //            guard let this: ContactViewController = self else { return }
 //            if let data: [String: Any] = notification.object as? [String: Any],
@@ -73,12 +77,12 @@ extension ContactViewController {
 
 extension ContactViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let viewModel: ContactViewModel = viewModel else { return 0 }
+        guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return 0 }
         return viewModel.numberOfItemsInSection()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let viewModel: ContactViewModel = viewModel else { return UICollectionViewCell() }
+        guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return UICollectionViewCell() }
         let cell: ContactViewCell = collectionView.dequeue(ContactViewCell.self, forIndexPath: indexPath)
         cell.viewModel =  viewModel.modelForCell(at: indexPath)
         return cell
@@ -87,7 +91,7 @@ extension ContactViewController: UICollectionViewDataSource {
 
 extension ContactViewController: UICollectionViewDelegate {
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let viewModel: ContactViewModel = viewModel else { return }
+        guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return }
         let contactDetail: ContactDetailViewController = ContactDetailViewController()
         contactDetail.viewModel = viewModel.contactModel(at: indexPath)
         navigationController?.pushViewController(contactDetail, animated: true)

@@ -46,8 +46,26 @@ extension AddJuiceViewModel {
 
     func addJuice(name: String, description: String, unit: String) {
         guard let context: NSManagedObjectContext = self.context else { return }
-        var juice: CoreJuice = CoreJuice(context: context)
+
+        let avatar: CoreImage = CoreImage(context: context)
+        avatar.id = App.getNextImageKey(type: .image)
+        avatar.imageData = juiceImage[0].toData()
+        avatar.imageFileSize = Float(juiceImage[0].sizeInMB)
+        avatar.imageTypeFor = 1
+        avatar.isDelete = false
+        avatar.save(success: {
+            print("Create user success")
+        }) { (err) in
+            print("Create user fail: \(err.localizedDescription)")
+            return
+        }
+
+        let juice: CoreJuice = CoreJuice(context: context)
         juice.id = App.getNextImageKey(type: .juice)
+        juice.juiceName = name
+        juice.juiceDescription = description
+        juice.isDelete = false
+        juice.juicePhotoId = avatar.id
     }
 
     func takePhoto(image: UIImage) {

@@ -11,20 +11,23 @@ import UIKit.UIImage
 import CoreData
 
 final class ContactDetailViewModel: BaseViewModel {
-    var model: CoreContact
+    var contactDetail: ContactModel
+    var isHaveImage: Bool {
+        return contactDetail.contact.avatarId != nil && contactDetail.contact.avatarId?.isEmpty == false
+    }
 
-    init(model: CoreContact) {
-        self.model = model
+    init(model: ContactModel) {
+        self.contactDetail = model
     }
 }
 
 extension ContactDetailViewModel {
-    func deleteContact() {
-        model.delete(completed: { err in
+    func deleteContact(completion: @escaping Completed) {
+        contactDetail.contact.delete(completed: { (err) in
             if err == nil {
-                print("Delete success")
+                completion(true)
             } else {
-                print("Delete fail: \(err!.localizedDescription)")
+                completion(false)
             }
         })
     }

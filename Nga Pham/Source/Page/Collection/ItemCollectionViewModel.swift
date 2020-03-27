@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-final class ItemCollectionViewModel {
+final class ItemCollectionViewModel: BaseViewModel {
     private var juicesCollection: [CoreJuice] = []
 }
 

@@ -13,7 +13,7 @@ final class ItemCollectionCellModel {
     let description: String
 
     init(data: CoreJuice) {
-        description = data.juiceDescription
+        description = data.juiceDescription.unwrapped(or: "")
         imageUrl = nil
     }
 }

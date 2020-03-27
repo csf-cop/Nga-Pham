@@ -20,7 +20,9 @@ extension HomeViewModel {
     }
 
     func modelForCell(at: IndexPath) -> JuiceCollectionViewModel {
-        return JuiceCollectionViewModel(model: juices[safe: at.row].unwrapped(or: CoreJuice()))
+//        JuiceCollectionViewModel
+//        return JuiceCollectionViewModel(model: JuiceModel(juice: juices[safe: at.row].unwrapped(or: CoreJuice())), photo: nil, morePhotos: [])
+        return JuiceCollectionViewModel(model: JuiceModel(juice: CoreJuice(), photo: nil))
     }
 
     func modelCellDetail(at: IndexPath) -> JuiceDetailViewModel {

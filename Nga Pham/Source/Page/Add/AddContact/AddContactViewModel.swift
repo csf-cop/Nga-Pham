@@ -47,8 +47,8 @@ extension AddContactViewModel {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 
-    func addContact(name: String, address: String, phone: String, note: String) -> CoreContact? {
-        guard let context: NSManagedObjectContext = self.context else { return nil }
+    func addContact(name: String, address: String, phone: String, note: String, completion: @escaping Completed) {
+        guard let context: NSManagedObjectContext = self.context else { return }
         let imageId: String = App.getNextImageKey(type: .image)
         let avatar: CoreImage = CoreImage(context: context)
         let contact: CoreContact = CoreContact(context: context)
@@ -69,18 +69,17 @@ extension AddContactViewModel {
                 contact.setValue(address, forKey: "addressPrimary")
                 contact.setValue(address, forKey: "addressOther")
                 contact.setValue(note, forKey: "noteInfo")
-                contact.re_Avatar = avatar
+                contact.avatarId = imageId
 
                 contact.save(success: {
-                    print("Create user success")
+                    completion(true)
                 }) { (err) in
-                    print("Create user fail: \(err.localizedDescription)")
+                    completion(false)
                 }
             }) { (err) in
-                print("Create user fail: \(err.localizedDescription)")
+                self.handleErrorMessage?(err)
+                completion(false)
             }
         }
-
-        return contact
     }
 }
