@@ -37,7 +37,7 @@ extension JuiceDetailViewController {
 
     private func settingData() {
         guard let viewModel: JuiceDetailViewModel = viewModel else { return }
-        juiceNameLabel.text = viewModel.juice.juiceName
-        juiceDescriptionLabel.text = viewModel.juice.juiceDescription
+        juiceNameLabel.text = viewModel.juiceModel.juice.juiceName
+        juiceDescriptionLabel.text = viewModel.juiceModel.juice.juiceDescription
     }
 }

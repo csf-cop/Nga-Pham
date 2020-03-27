@@ -44,7 +44,7 @@ extension AddJuiceViewModel {
         }
     }
 
-    func addJuice(name: String, description: String, unit: String) {
+    func addJuice(name: String, description: String, unit: String, completion: @escaping Completed) {
         guard let context: NSManagedObjectContext = self.context else { return }
 
         let avatar: CoreImage = CoreImage(context: context)
@@ -52,20 +52,50 @@ extension AddJuiceViewModel {
         avatar.imageData = juiceImage[0].toData()
         avatar.imageFileSize = Float(juiceImage[0].sizeInMB)
         avatar.imageTypeFor = 1
+        avatar.imageIndex = 0
         avatar.isDelete = false
-        avatar.save(success: {
-            print("Create user success")
-        }) { (err) in
-            print("Create user fail: \(err.localizedDescription)")
-            return
-        }
 
         let juice: CoreJuice = CoreJuice(context: context)
         juice.id = App.getNextImageKey(type: .juice)
         juice.juiceName = name
         juice.juiceDescription = description
         juice.isDelete = false
-        juice.juicePhotoId = avatar.id
+
+        avatar.save(success: {
+            juice.juicePhotoId = avatar.id
+        }) { (err) in
+            self.handleErrorMessage?(err)
+            completion(false)
+            return
+        }
+
+        var photosId: [String] = []
+        for index in 0..<uploadableImages.count {
+            let image: CoreImage = CoreImage(context: context)
+            image.id = App.getNextImageKey(type: .image)
+            image.imageData = uploadableImages[index].toData()
+            image.imageFileSize = Float(uploadableImages[index].sizeInMB)
+            image.imageTypeFor = 1
+            image.imageIndex = Int16(index)
+            image.isDelete = false
+            image.save(success: {
+                photosId.append(image.id)
+            }) { (err) in
+                self.handleErrorMessage?(err)
+                completion(false)
+                return
+            }
+        }
+        if photosId.isEmpty == false {
+            juice.juiceMorePhotos = try? JSONSerialization.data(withJSONObject: photosId, options: [])
+        }
+        juice.save(success: {
+            completion(true)
+        }) { (err) in
+            self.handleErrorMessage?(err)
+            completion(false)
+            return
+        }
     }
 
     func takePhoto(image: UIImage) {

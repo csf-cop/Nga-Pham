@@ -31,6 +31,13 @@ extension Collection where Index == Int {
     }
 }
 
+extension Collection where Index == String {
+
+    func stringArrayToData() -> Data? {
+      return try? JSONSerialization.data(withJSONObject: self, options: [])
+    }
+}
+
 extension Array where Element: Equatable {
     func removeDuplicates() -> [Element] {
         var result = [Element]()

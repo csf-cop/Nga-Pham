@@ -38,7 +38,9 @@ final class AddJuiceViewController: UIViewController {
         let juiceName: String = juiceNameTextField.text.unwrapped(or: "")
         let juiceDescription: String = juiceNoteTextView.text.unwrapped(or: "")
         let unit: String = unitMersurePicker.text.unwrapped(or: "")
-        viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit)
+        viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
+            
+        }
         dismiss(animated: true)
     }
 

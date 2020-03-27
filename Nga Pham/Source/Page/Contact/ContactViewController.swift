@@ -71,6 +71,7 @@ extension ContactViewController {
 //                this.collectionView.reloadData()
 //            }
 //        }
+        print("Call back load Data item.")
         loadContactData()
     }
 }

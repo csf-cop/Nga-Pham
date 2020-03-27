@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 final class HomeViewModel {
-    private var juices: [CoreJuice] = []
+    private var juices: [JuiceModel] = []
 }
 
 // MARK: For UITableView
@@ -26,6 +26,6 @@ extension HomeViewModel {
     }
 
     func modelCellDetail(at: IndexPath) -> JuiceDetailViewModel {
-        return JuiceDetailViewModel(data: juices[safe: at.row].unwrapped(or: CoreJuice()))
+        return JuiceDetailViewModel(model: juices[safe: at.row].unwrapped(or: JuiceModel(juice: CoreJuice(), photo: nil)))
     }
 }

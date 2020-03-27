@@ -2,7 +2,7 @@
 //  CoreImage+CoreDataProperties.swift
 //  Nga Pham
 //
-//  Created by Tuan Dang Q. on 3/26/20.
+//  Created by Tuan Dang Q. on 3/27/20.
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 //
@@ -12,6 +12,7 @@ import CoreData
 
 
 extension CoreImage {
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CoreImage> {
         return NSFetchRequest<CoreImage>(entityName: "CoreImage")
     }
@@ -23,5 +24,6 @@ extension CoreImage {
     @NSManaged public var imageName: String?
     @NSManaged public var imageTypeFor: Int16
     @NSManaged public var isDelete: Bool
+    @NSManaged public var imageIndex: Int16
 
 }

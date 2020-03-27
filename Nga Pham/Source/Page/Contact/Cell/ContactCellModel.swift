@@ -7,15 +7,13 @@
 //
 
 import Foundation
-import UIKit.UIImage
 
 final class ContactCellModel {
     var fullName: String
     var avatarData: Data?
 
     init(model: ContactModel) {
-        let defaultImage: UIImage = #imageLiteral(resourceName: "img_no_image")
         fullName = model.contact.fullName
-        avatarData = (model.avatar?.imageData).unwrapped(or: defaultImage.toData())
+        avatarData = model.avatar?.imageData
     }
 }

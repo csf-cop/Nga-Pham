@@ -10,19 +10,20 @@ import Foundation
 import UIKit
 
 final class ItemCollectionViewModel: BaseViewModel {
-    private var juicesCollection: [CoreJuice] = []
+    private var juicesModel: [JuiceModel] = []
 }
 
 extension ItemCollectionViewModel {
     func numberOfRowsInSection() -> Int {
-        return 10
+        return juicesModel.count
     }
 
     func viewModelForItemCollectionCell(at: IndexPath) -> ItemCollectionCellModel {
-        return ItemCollectionCellModel(data: juicesCollection[safe: at.row].unwrapped(or: CoreJuice()))
+        let juice: JuiceModel = juicesModel[safe: at.row].unwrapped(or: JuiceModel(juice: CoreJuice(), photo: nil))
+        return ItemCollectionCellModel(model: juice)
     }
 
     func modelCellDetail(at: IndexPath) -> JuiceDetailViewModel {
-        return JuiceDetailViewModel(data: juicesCollection[safe: at.row].unwrapped(or: CoreJuice()))
+        return JuiceDetailViewModel(model: juicesModel[safe: at.row].unwrapped(or: JuiceModel(juice: CoreJuice(), photo: nil)))
     }
 }
