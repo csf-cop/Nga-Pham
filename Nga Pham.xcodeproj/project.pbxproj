@@ -31,6 +31,7 @@
 		3111A4372423D99500906219 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4352423D99500906219 /* ContactDetailViewController.swift */; };
 		3111A4382423D99500906219 /* ContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A4362423D99500906219 /* ContactDetailViewController.xib */; };
 		3111A43A2423D9A900906219 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4392423D9A900906219 /* ContactDetailViewModel.swift */; };
+		3128F474242DB995008D3FEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3128F473242DB995008D3FEF /* ViewController.swift */; };
 		31393ABF24243672007D3004 /* ContactViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31393ABD24243672007D3004 /* ContactViewCell.swift */; };
 		31393AC024243672007D3004 /* ContactViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31393ABE24243672007D3004 /* ContactViewCell.xib */; };
 		316FAE6E24246C2300733952 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FAE6D24246C2300733952 /* UIViewControllerExt.swift */; };
@@ -143,6 +144,7 @@
 		3111A4352423D99500906219 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		3111A4362423D99500906219 /* ContactDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactDetailViewController.xib; sourceTree = "<group>"; };
 		3111A4392423D9A900906219 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
+		3128F473242DB995008D3FEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		31393ABD24243672007D3004 /* ContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewCell.swift; sourceTree = "<group>"; };
 		31393ABE24243672007D3004 /* ContactViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewCell.xib; sourceTree = "<group>"; };
 		316FAE6D24246C2300733952 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				31DD4D6F241FE97F00E8667F /* Toolbar.swift */,
 				316FAE822424748900733952 /* Popup.swift */,
 				31CA89772426269C00D42170 /* BaseViewModel.swift */,
+				3128F473242DB995008D3FEF /* ViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -766,6 +769,7 @@
 				3111A43A2423D9A900906219 /* ContactDetailViewModel.swift in Sources */,
 				31DD4D2B241FB59100E8667F /* Application.swift in Sources */,
 				316FAE6E24246C2300733952 /* UIViewControllerExt.swift in Sources */,
+				3128F474242DB995008D3FEF /* ViewController.swift in Sources */,
 				31E167D6242BB502006E78E2 /* ContactModel.swift in Sources */,
 				31393ABF24243672007D3004 /* ContactViewCell.swift in Sources */,
 				31DD06F6242C968000E17C6C /* CoreJuice+CoreDataClass.swift in Sources */,

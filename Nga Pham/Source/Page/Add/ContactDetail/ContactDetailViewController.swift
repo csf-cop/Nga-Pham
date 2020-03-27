@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ContactDetailViewController: UIViewController {
+final class ContactDetailViewController: ViewController {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
@@ -16,19 +16,24 @@ final class ContactDetailViewController: UIViewController {
     @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var deleteButton: UIButton!
 
-    var viewModel: ContactDetailViewModel?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        guard let viewModel: ContactDetailViewModel = viewModel else { return }
+        guard let viewModel: ContactDetailViewModel = viewModel as? ContactDetailViewModel else { return }
         updateData(model: viewModel)
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     @IBAction func deleteButtonTouchUpInside(_ sender: UIButton) {
-        viewModel?.deleteContact()
-        navigationController?.popViewController(animated: true)
+        guard let viewModel: ContactDetailViewModel = viewModel as? ContactDetailViewModel else { return }
+        viewModel.deleteContact { [] isSuccess in
+            if isSuccess {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     @IBAction func editButtonTouchUpInside(_ sender: UIButton) {
@@ -39,11 +44,12 @@ final class ContactDetailViewController: UIViewController {
 extension ContactDetailViewController {
     private func updateData(model: ContactDetailViewModel) {
         let defaultImage: UIImage = #imageLiteral(resourceName: "img_no_image")
-        if let imageData: Data = (model.model.avatar?.imageData).unwrapped(or: defaultImage.toData()) {
+        if let imageData: Data = (model.contactDetail.avatar?.imageData).unwrapped(or: defaultImage.toData()) {
             avatarImageView.image = UIImage(data: imageData)
         } else {
             avatarImageView.image = #imageLiteral(resourceName: "img_no_image")
         }
-        fullNameLabel.text = model.model.contact.fullName
+        fullNameLabel.text = model.contactDetail.contact.fullName
+        phoneLabel.text = model.contactDetail.contact.phone
     }
 }

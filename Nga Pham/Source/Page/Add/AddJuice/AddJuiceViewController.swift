@@ -29,6 +29,9 @@ final class AddJuiceViewController: UIViewController {
         // Do any additional setup after loading the view.
         title = "Thêm hoa quả"
         configGesture()
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     @IBAction func addJuiceTouchUpInside(_ sender: UIButton) {

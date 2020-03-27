@@ -24,18 +24,19 @@ extension ContactViewModel {
     }
 
     func contactModel(at: IndexPath) -> ContactDetailViewModel {
-        return ContactDetailViewModel(model: ContactModel())
-//            contacts[safe: at.row].unwrapped(or: CoreContact()))
+        return ContactDetailViewModel(model: contactsModel[safe: at.row].unwrapped(or: ContactModel()))
     }
 
-    func loadContactsData() {
+    func loadContactsData(completion: @escaping Completed) {
         CoreContact.all(predicate: nil, success: { result in
             guard let result: [CoreContact] = result as? [CoreContact] else {
                 return
             }
             self.generateModel(data: result)
+            completion(true)
         }) { (err) in
-            print("Fetch fail cmnr: \(err)")
+            self.handleErrorMessage?(err)
+            completion(false)
         }
     }
 }
@@ -43,6 +44,7 @@ extension ContactViewModel {
 extension ContactViewModel {
     private func generateModel(data: [CoreContact]) {
         if data.isEmpty { return }
+        contactsModel = []
         let imageIds: [String] = data.map { $0.avatarId.unwrapped(or: "") }
         CoreImage.all(predicate: NSPredicate(format: "id in %@", imageIds), success: { photos in
             guard let photos: [CoreImage] = photos as? [CoreImage] else {
