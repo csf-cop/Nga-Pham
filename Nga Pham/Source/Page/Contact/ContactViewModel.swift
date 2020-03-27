@@ -34,30 +34,28 @@ extension ContactViewModel {
                 return
             }
             self.generateModel(data: result)
-            #warning("Customize source code - after.")
-//            if self.contacts.isEmpty {
-//                self.contacts = result
-//            } else {
-//                 result.forEach { item in
-//                    if self.contacts.first(where: { $0.id.elementsEqual(item.id) }) == nil {
-//                        self.contacts.append(item)
-//                    }
-//                }
-//            }
         }) { (err) in
             print("Fetch fail cmnr: \(err)")
         }
     }
-
-    #warning("Customize source code.")
-//    func additionalContact(contact: CoreContact) {
-//        contacts.append(contact)
-//    }
 }
 
 extension ContactViewModel {
     private func generateModel(data: [CoreContact]) {
         if data.isEmpty { return }
-//        let avatarImages: [CoreImage] = 
+        let imageIds: [String] = data.map { $0.avatarId.unwrapped(or: "") }
+        CoreImage.all(predicate: NSPredicate(format: "id in %@", imageIds), success: { photos in
+            guard let photos: [CoreImage] = photos as? [CoreImage] else {
+                return
+            }
+            data.forEach { contact in
+                let model: ContactModel = ContactModel()
+                model.contact = contact
+                model.avatar = photos.first(where: {$0.id.elementsEqual(contact.avatarId.unwrapped(or: ""))})
+                self.contactsModel.append(model)
+            }
+        }) { (err) in
+            print("Fetch fail cmnr: \(err)")
+        }
     }
 }
