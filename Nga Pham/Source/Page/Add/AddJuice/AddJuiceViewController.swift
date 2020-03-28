@@ -28,6 +28,7 @@ final class AddJuiceViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         title = "Thêm hoa quả"
+        juiceNameTextField.delegate = self
         configGesture()
         viewModel.handleErrorMessage = { [weak self] error in
             self?.showError(error)
@@ -77,7 +78,6 @@ extension AddJuiceViewController {
         for image in images {
             image.addGestureRecognizer(uploadGesture)
         }
-        
     }
 
     private func accessToLibrary(isJuiceImage: Bool = true) {
@@ -209,5 +209,12 @@ extension AddJuiceViewController {
                                                              "Selfies": App.Strings.Camera.selfies,
                                                              "Favorites": App.Strings.favorite,
                                                              "My Photo Stream": App.Strings.Camera.myPhotoStream]
+    }
+}
+
+extension AddJuiceViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

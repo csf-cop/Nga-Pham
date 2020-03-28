@@ -25,9 +25,25 @@ extension App {
             id = SecurePreference.shared.integer(forKey: type.key)
         }
         id += 1
-        let nextId: String = "\(Date().string(withFormat: FormatType.fullTimeSecond))\(id)"
         SecurePreference.shared.set(id, forKey: type.key)
-        return nextId
+        return String(id)
+    }
+
+    enum ImageTypeFor {
+        case contact
+        case juice
+        case order
+
+        var value: Int16 {
+            switch self {
+            case .contact:
+                return 1
+            case .juice:
+                return 2
+            case .order:
+                return 3
+            }
+        }
     }
 
     enum TypeCoreType {

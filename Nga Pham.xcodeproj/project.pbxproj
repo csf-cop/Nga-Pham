@@ -49,6 +49,7 @@
 		316FAE9A242499FB00733952 /* SoftwareInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FAE98242499FB00733952 /* SoftwareInfoViewController.swift */; };
 		316FAE9B242499FB00733952 /* SoftwareInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316FAE99242499FB00733952 /* SoftwareInfoViewController.xib */; };
 		316FAE9D24249A1A00733952 /* SoftwareInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316FAE9C24249A1A00733952 /* SoftwareInfoViewModel.swift */; };
+		31A92EB9242F7F7B005257EC /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A92EB8242F7F7B005257EC /* UITextFieldExt.swift */; };
 		31C2701A242EC71E004ED542 /* SecurePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C27019242EC71E004ED542 /* SecurePreference.swift */; };
 		31C2701C242EC76F004ED542 /* SaveKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C2701B242EC76F004ED542 /* SaveKeys.swift */; };
 		31CA8956242616E100D42170 /* NSManagedObjectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CA8955242616E100D42170 /* NSManagedObjectExt.swift */; };
@@ -164,6 +165,7 @@
 		316FAE98242499FB00733952 /* SoftwareInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareInfoViewController.swift; sourceTree = "<group>"; };
 		316FAE99242499FB00733952 /* SoftwareInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoftwareInfoViewController.xib; sourceTree = "<group>"; };
 		316FAE9C24249A1A00733952 /* SoftwareInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareInfoViewModel.swift; sourceTree = "<group>"; };
+		31A92EB8242F7F7B005257EC /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		31C27019242EC71E004ED542 /* SecurePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurePreference.swift; sourceTree = "<group>"; };
 		31C2701B242EC76F004ED542 /* SaveKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveKeys.swift; sourceTree = "<group>"; };
 		31CA8955242616E100D42170 /* NSManagedObjectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExt.swift; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 				31CC0F47242524C40082E4FB /* NotificationExt.swift */,
 				31CA8955242616E100D42170 /* NSManagedObjectExt.swift */,
 				31CA897E24262ED900D42170 /* UIImageExt.swift */,
+				31A92EB8242F7F7B005257EC /* UITextFieldExt.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				316FAE932424994000733952 /* SyncDataViewController.swift in Sources */,
 				316FAE832424748900733952 /* Popup.swift in Sources */,
 				3111A4182423C06A00906219 /* ContactViewModel.swift in Sources */,
+				31A92EB9242F7F7B005257EC /* UITextFieldExt.swift in Sources */,
 				31DD4D5E241FDD8000E8667F /* UICollectionViewExt.swift in Sources */,
 				31DD06F8242C968000E17C6C /* CoreOrder+CoreDataClass.swift in Sources */,
 				316FAE8C2424989500733952 /* UserInformationViewController.swift in Sources */,

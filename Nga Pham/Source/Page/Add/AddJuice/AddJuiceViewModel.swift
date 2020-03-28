@@ -49,7 +49,9 @@ extension AddJuiceViewModel {
 
         let avatar: CoreImage = CoreImage(context: context)
         avatar.id = App.getNextImageKey(type: .image)
-        avatar.imageData = juiceImage[0].toData()
+        if juiceImage.isEmpty == false {
+            avatar.imageData = juiceImage[0].toData()
+        }
         avatar.imageFileSize = Float(juiceImage[0].sizeInMB)
         avatar.imageTypeFor = 1
         avatar.imageIndex = 0

@@ -90,7 +90,7 @@ extension ContactViewController: UICollectionViewDataSource {
 }
 
 extension ContactViewController: UICollectionViewDelegate {
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return }
         let contactDetail: ContactDetailViewController = ContactDetailViewController()
         contactDetail.viewModel = viewModel.contactModel(at: indexPath)
@@ -100,7 +100,6 @@ extension ContactViewController: UICollectionViewDelegate {
 
 extension ContactViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let widthPerItem = view.frame.width / 2.5
         let height = widthPerItem * 1.3
         return CGSize(width: widthPerItem, height: height)
