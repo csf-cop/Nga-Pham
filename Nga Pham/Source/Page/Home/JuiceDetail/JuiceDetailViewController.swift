@@ -39,5 +39,10 @@ extension JuiceDetailViewController {
         guard let viewModel: JuiceDetailViewModel = viewModel else { return }
         juiceNameLabel.text = viewModel.juiceModel.juice.juiceName
         juiceDescriptionLabel.text = viewModel.juiceModel.juice.juiceDescription
+        if let image: CoreImage = viewModel.juiceModel.avatar, let data: Data = image.imageData {
+            juiceImageView.image = UIImage(data: data)
+        } else {
+            juiceImageView.image = #imageLiteral(resourceName: "img_no_image")
+        }
     }
 }

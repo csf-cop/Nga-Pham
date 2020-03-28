@@ -39,9 +39,10 @@ final class AddJuiceViewController: UIViewController {
         let juiceDescription: String = juiceNoteTextView.text.unwrapped(or: "")
         let unit: String = unitMersurePicker.text.unwrapped(or: "")
         viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
-            
+            if sussess {
+                self.dismiss(animated: true)
+            }
         }
-        dismiss(animated: true)
     }
 
     @IBAction func moreJuiceImageTouchUpInside(_ sender: UIButton) {

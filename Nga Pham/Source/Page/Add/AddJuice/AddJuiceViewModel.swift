@@ -70,25 +70,23 @@ extension AddJuiceViewModel {
         }
 
         var photosId: [String] = []
-        for index in 0..<uploadableImages.count {
-            let image: CoreImage = CoreImage(context: context)
-            image.id = App.getNextImageKey(type: .image)
-            image.imageData = uploadableImages[index].toData()
-            image.imageFileSize = Float(uploadableImages[index].sizeInMB)
-            image.imageTypeFor = 1
-            image.imageIndex = Int16(index)
-            image.isDelete = false
-            image.save(success: {
-                photosId.append(image.id)
-            }) { (err) in
-                self.handleErrorMessage?(err)
-                completion(false)
-                return
-            }
-        }
-        if photosId.isEmpty == false {
-            juice.juiceMorePhotos = try? JSONSerialization.data(withJSONObject: photosId, options: [])
-        }
+//        for index in 0..<uploadableImages.count {
+//            let image: CoreImage = CoreImage(context: context)
+//            image.id = App.getNextImageKey(type: .image)
+//            image.imageData = uploadableImages[index].toData()
+//            image.imageFileSize = Float(uploadableImages[index].sizeInMB)
+//            image.imageTypeFor = 1
+//            image.imageIndex = Int16(index)
+//            image.isDelete = false
+//            image.save(success: {
+//                photosId.append(image.id)
+//            }) { (err) in
+//                self.handleErrorMessage?(err)
+//                completion(false)
+//                return
+//            }
+//        }
+        juice.juiceMorePhotos = try? JSONSerialization.data(withJSONObject: photosId, options: [])
         juice.save(success: {
             completion(true)
         }) { (err) in
