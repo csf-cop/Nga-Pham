@@ -9,11 +9,9 @@
 import Foundation
 
 final class ItemCollectionCellModel {
-    let imageUrl: Data?
     let description: String
 
-    init(data: CoreJuice) {
-        description = data.juiceDescription.unwrapped(or: "")
-        imageUrl = nil
+    init(model: CoreOrder) {
+        description = model.contactName.unwrapped(or: "default")
     }
 }

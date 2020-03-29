@@ -1,5 +1,5 @@
 //
-//  AddContactViewController.swift
+//  AddJuiceViewController.swift
 //  Nga Pham
 //
 //  Created by Tuan Dang Q. on 3/19/20.
@@ -10,47 +10,44 @@ import UIKit
 import TLPhotoPicker
 import Photos
 
-final class AddContactViewController: UIViewController {
+final class AddJuiceViewController: UIViewController {
 
-    @IBOutlet private weak var addContactButton: UIButton!
-    @IBOutlet private weak var fullNameTextField: UITextField!
-    @IBOutlet private weak var phoneTextField: UITextField!
-    @IBOutlet private weak var addressTextField: UITextField!
-    @IBOutlet private weak var noteTextView: UITextView!
-    @IBOutlet private weak var avatarImageView: UIImageView!
-    
+    @IBOutlet private weak var juiceImageView: UIImageView!
+    @IBOutlet private weak var addJuiceButton: UIButton!
+    @IBOutlet private weak var juiceNameTextField: UITextField!
+    @IBOutlet private weak var juiceNoteTextView: UITextView!
+    @IBOutlet private weak var imageDescriptionStackView: UIStackView!
+    @IBOutlet private weak var unitMersurePicker: PickerViewTextField!
+
+    var viewModel: AddJuiceViewModel = AddJuiceViewModel()
     private lazy var imagePicker: UIImagePickerController = UIImagePickerController()
-    var viewModel: AddContactViewModel = AddContactViewModel()
+    private var isJuiceImage: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        title = "Thêm liên lạc"
-        configUI()
-        let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
-        avatarImageView.addGestureRecognizer(gesture)
+        title = "Thêm hoa quả"
+        juiceNameTextField.delegate = self
+        configGesture()
         viewModel.handleErrorMessage = { [weak self] error in
             self?.showError(error)
         }
     }
 
-    @IBAction func addContactTouchUpInside(_ sender: UIButton) {
-        let name: String = fullNameTextField.text.unwrapped(or: "")
-        let address: String = addressTextField.text.unwrapped(or: "")
-        let phone: String = phoneTextField.text.unwrapped(or: "")
-        let note: String = noteTextView.text
-
-        viewModel.addContact(name: name, address: address, phone: phone, note: note) { _ in 
-            notificationCenter.post(name: .ReloadContacts, object: nil)
+    @IBAction func addJuiceTouchUpInside(_ sender: UIButton) {
+        let juiceName: String = juiceNameTextField.text.unwrapped(or: "")
+        let juiceDescription: String = juiceNoteTextView.text.unwrapped(or: "")
+        let unit: String = unitMersurePicker.text.unwrapped(or: "")
+        viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
+            if sussess {
+                self.dismiss(animated: true)
+            }
         }
-        self.dismiss(animated: true)
     }
-}
 
-extension AddContactViewController {
-    private func configUI() {
-        phoneTextField.keyboardType = .asciiCapableNumberPad
+    @IBAction func moreJuiceImageTouchUpInside(_ sender: UIButton) {
+        accessToLibrary(isJuiceImage: false)
     }
 
     @objc func pickPhoto(sender: UITapGestureRecognizer) {
@@ -66,12 +63,30 @@ extension AddContactViewController {
         }
     }
 
-    private func accessToLibrary() {
+    @objc private func uploadPhoto(sender: UITapGestureRecognizer) {
+        accessToLibrary(isJuiceImage: false)
+    }
+}
+
+extension AddJuiceViewController {
+    private func configGesture() {
+        let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
+        juiceImageView.addGestureRecognizer(gesture)
+
+        let uploadGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.uploadPhoto))
+        guard let images: [UIImageView] = imageDescriptionStackView.arrangedSubviews as? [UIImageView] else { return }
+        for image in images {
+            image.addGestureRecognizer(uploadGesture)
+        }
+    }
+
+    private func accessToLibrary(isJuiceImage: Bool = true) {
+        self.isJuiceImage = isJuiceImage
         let photos: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photos {
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization ({ [weak self] status in
-                guard let this: AddContactViewController = self else { return }
+                guard let this: AddJuiceViewController = self else { return }
                 if status == .authorized {
                     this.presentLibraryPhoto()
                 }
@@ -103,7 +118,12 @@ extension AddContactViewController {
             configure.tapHereToChange = App.Strings.Camera.tapHereToChange
             configure.doneTitle = App.Strings.complete
             configure.cancelTitle = App.Strings.cancel
-            configure.singleSelectedMode = true
+            if self.isJuiceImage {
+                configure.singleSelectedMode = true
+            } else {
+                configure.singleSelectedMode = false
+                configure.maxSelectedAssets = CameraConfig.maxSelectedAssets
+            }
             configure.customLocalizedTitle = CameraConfig.customLocalizedTitle
             viewController.configure = configure
 
@@ -114,7 +134,7 @@ extension AddContactViewController {
     private func accessToCamera() {
         if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined {
             AVCaptureDevice.requestAccess(for: .video) { [weak self] cameraGranted -> Void in
-                guard let this: AddContactViewController = self else { return }
+                guard let this: AddJuiceViewController = self else { return }
                 if cameraGranted {
                     this.presentCamera()
                 }
@@ -144,34 +164,28 @@ extension AddContactViewController {
     }
 }
 
-extension AddContactViewController {
-    struct CameraConfig {
-        static let alertButtonTitles: [String] = [App.Strings.cancel, App.Strings.setting]
-        static let typeButtonTitles: [String] = [App.Strings.library, App.Strings.camera]
-        static let numberOfColumn: Int = 3
-        static let maxSelectedAssets: Int = 9
-        static let customLocalizedTitle: [String: String] = ["Camera Roll": App.Strings.Camera.cameraRoll,
-                                                             "Selfies": App.Strings.Camera.selfies,
-                                                             "Favorites": App.Strings.favorite,
-                                                             "My Photo Stream": App.Strings.Camera.myPhotoStream]
-    }
-}
-
 // MARK: TLPhotosPickerViewControllerDelegate
-extension AddContactViewController: TLPhotosPickerViewControllerDelegate {
+extension AddJuiceViewController: TLPhotosPickerViewControllerDelegate {
     func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
-        viewModel.getSelectedImage(selectedAssets: withTLPHAssets)
+        viewModel.getSelectedImage(isJuiceImage: isJuiceImage, selectedAssets: withTLPHAssets)
     }
 
     func dismissComplete() {
-        if !viewModel.images.isEmpty {
-            avatarImageView.image = viewModel.images[0]
+        if isJuiceImage {
+            if !viewModel.juiceImage.isEmpty {
+                juiceImageView.image = viewModel.juiceImage[0]
+            }
+        } else {
+            let photos: [UIImageView] = imageDescriptionStackView.arrangedSubviews.compactMap({ $0 as? UIImageView })
+            for image in photos {
+                image.image = viewModel.uploadableImages[safe: image.tag].unwrapped(or: UIImage())
+            }
         }
     }
 }
 
 // MARK: - UINavigationControllerDelegate, UIImagePickerControllerDelegate
-extension AddContactViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension AddJuiceViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image: UIImage = info[.originalImage] as? UIImage {
             viewModel.takePhoto(image: image)
@@ -180,7 +194,27 @@ extension AddContactViewController: UINavigationControllerDelegate, UIImagePicke
         }
         imagePicker.dismiss(animated: true) {
             guard let image: UIImage = info[.originalImage] as? UIImage else { return }
-            self.avatarImageView.image = image
+            self.juiceImageView.image = image
         }
+    }
+}
+
+extension AddJuiceViewController {
+    struct CameraConfig {
+        static let alertButtonTitles: [String] = [App.Strings.cancel, App.Strings.setting]
+        static let typeButtonTitles: [String] = [App.Strings.library, App.Strings.camera]
+        static let numberOfColumn: Int = 3
+        static let maxSelectedAssets: Int = 4
+        static let customLocalizedTitle: [String: String] = ["Camera Roll": App.Strings.Camera.cameraRoll,
+                                                             "Selfies": App.Strings.Camera.selfies,
+                                                             "Favorites": App.Strings.favorite,
+                                                             "My Photo Stream": App.Strings.Camera.myPhotoStream]
+    }
+}
+
+extension AddJuiceViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

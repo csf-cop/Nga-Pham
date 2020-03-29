@@ -26,6 +26,7 @@ final class JuiceDetailViewController: UIViewController {
     }
     @IBAction func orderJuiceTouchUpInside(_ sender: UIButton) {
         let orderVC: OrderJuiceViewController = OrderJuiceViewController()
+        orderVC.viewModel = OrderJuiceViewModel()
         navigationController?.pushViewController(orderVC, animated: true)
     }
 }
@@ -37,7 +38,12 @@ extension JuiceDetailViewController {
 
     private func settingData() {
         guard let viewModel: JuiceDetailViewModel = viewModel else { return }
-        juiceNameLabel.text = viewModel.juice.juiceName
-        juiceDescriptionLabel.text = viewModel.juice.juiceDescription
+        juiceNameLabel.text = viewModel.juiceModel.juice.juiceName
+        juiceDescriptionLabel.text = viewModel.juiceModel.juice.juiceDescription
+        if let image: CoreImage = viewModel.juiceModel.avatar, let data: Data = image.imageData {
+            juiceImageView.image = UIImage(data: data)
+        } else {
+            juiceImageView.image = #imageLiteral(resourceName: "img_no_image")
+        }
     }
 }

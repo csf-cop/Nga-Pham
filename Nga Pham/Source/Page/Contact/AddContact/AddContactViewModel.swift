@@ -6,12 +6,11 @@
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 
-import Foundation
 import TLPhotoPicker
 import CoreData
 
 final class AddContactViewModel: BaseViewModel {
-    private var uploadableImages: [UIImage] = []
+    var uploadableImages: [UIImage] = []
 
     var images: [UIImage] {
         return uploadableImages
@@ -25,7 +24,6 @@ extension AddContactViewModel {
             if let image: UIImage = asset.fullResolutionImage {
                 uploadableImages.append(image)
             } else {
-                print("Can't get image at local storage, try download image")
                 asset.cloudImageDownload(progressBlock: { (progress) in
                     DispatchQueue.main.async {
                         print(progress)
@@ -59,27 +57,28 @@ extension AddContactViewModel {
             avatar.setValue(picture.toData(), forKey: "imageData")
             avatar.setValue(picture.sizeInMB, forKey: "imageFileSize")
             avatar.setValue(Date().string(withFormat: FormatType.fullTimeSecond), forKey: "imageName")
-            avatar.setValue(1, forKey: "imageTypeFor")
+            avatar.setValue(App.ImageTypeFor.contact.value, forKey: "imageTypeFor")
             avatar.setValue(Date(), forKey: "imageDateCreate")
-
             avatar.save(success: {
-                contact.setValue(App.getNextImageKey(type: .contact), forKey: "id")
-                contact.setValue(name, forKey: "fullName")
-                contact.setValue(phone, forKey: "phone")
-                contact.setValue(address, forKey: "addressPrimary")
-                contact.setValue(address, forKey: "addressOther")
-                contact.setValue(note, forKey: "noteInfo")
-                contact.avatarId = imageId
-
-                contact.save(success: {
-                    completion(true)
-                }) { (err) in
-                    completion(false)
-                }
+                contact.avatarId = avatar.id
+                completion(true)
             }) { (err) in
                 self.handleErrorMessage?(err)
                 completion(false)
+                return
             }
+        }
+        contact.setValue(App.getNextImageKey(type: .contact), forKey: "id")
+        contact.setValue(name, forKey: "fullName")
+        contact.setValue(phone, forKey: "phone")
+        contact.setValue(address, forKey: "addressPrimary")
+        contact.setValue(address, forKey: "addressOther")
+        contact.setValue(note, forKey: "noteInfo")
+
+        contact.save(success: {
+            completion(true)
+        }) { (err) in
+            completion(false)
         }
     }
 }

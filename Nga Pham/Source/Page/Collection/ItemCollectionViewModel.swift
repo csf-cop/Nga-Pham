@@ -10,19 +10,34 @@ import Foundation
 import UIKit
 
 final class ItemCollectionViewModel: BaseViewModel {
-    private var juicesCollection: [CoreJuice] = []
+    private var orderModel: [CoreOrder] = []
 }
 
 extension ItemCollectionViewModel {
     func numberOfRowsInSection() -> Int {
-        return 10
+        return orderModel.count
     }
 
     func viewModelForItemCollectionCell(at: IndexPath) -> ItemCollectionCellModel {
-        return ItemCollectionCellModel(data: juicesCollection[safe: at.row].unwrapped(or: CoreJuice()))
+        let order: CoreOrder = orderModel[safe: at.row].unwrapped(or: CoreOrder())
+        return ItemCollectionCellModel(model: order)
     }
 
-    func modelCellDetail(at: IndexPath) -> JuiceDetailViewModel {
-        return JuiceDetailViewModel(data: juicesCollection[safe: at.row].unwrapped(or: CoreJuice()))
+    func modelCellDetail(at: IndexPath) -> OrderJuiceViewModel {
+        let order: CoreOrder = orderModel[safe: at.row].unwrapped(or: CoreOrder())
+        return OrderJuiceViewModel(order: order)
+    }
+
+    func loadOrdersData(completion: @escaping Completed) {
+        CoreOrder.all(predicate: nil, success: { result in
+            guard let result: [CoreOrder] = result as? [CoreOrder] else {
+                return
+            }
+            self.orderModel = result
+            completion(true)
+        }) { (err) in
+            self.handleErrorMessage?(err)
+            completion(false)
+        }
     }
 }

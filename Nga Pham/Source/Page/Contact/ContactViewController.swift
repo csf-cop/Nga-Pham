@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 final class ContactViewController: ViewController {
 
@@ -41,8 +40,7 @@ extension ContactViewController {
     @objc private func addContact(sender: UITapGestureRecognizer) {
         let contactVC: AddContactViewController = AddContactViewController()
         contactVC.viewModel = AddContactViewModel()
-        let navi: UINavigationController = UINavigationController(rootViewController: contactVC)
-        present(navi, animated: true)
+        navigationController?.pushViewController(contactVC, animated: true)
     }
 
     private func configTableView() {
@@ -71,6 +69,7 @@ extension ContactViewController {
 //                this.collectionView.reloadData()
 //            }
 //        }
+        print("Call back load Data item.")
         loadContactData()
     }
 }
@@ -90,7 +89,7 @@ extension ContactViewController: UICollectionViewDataSource {
 }
 
 extension ContactViewController: UICollectionViewDelegate {
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return }
         let contactDetail: ContactDetailViewController = ContactDetailViewController()
         contactDetail.viewModel = viewModel.contactModel(at: indexPath)
@@ -100,7 +99,6 @@ extension ContactViewController: UICollectionViewDelegate {
 
 extension ContactViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         let widthPerItem = view.frame.width / 2.5
         let height = widthPerItem * 1.3
         return CGSize(width: widthPerItem, height: height)

@@ -20,7 +20,30 @@ extension App {
     }
 
     static func getNextImageKey(type: TypeCoreType) -> String {
-        return "\(Date().string(withFormat: FormatType.fullTimeSecond))\(type.key)"
+        var id: Int = 0
+        if SecurePreference.shared.contains(forKey: type.key) {
+            id = SecurePreference.shared.integer(forKey: type.key)
+        }
+        id += 1
+        SecurePreference.shared.set(id, forKey: type.key)
+        return String(id)
+    }
+
+    enum ImageTypeFor {
+        case contact
+        case juice
+        case order
+
+        var value: Int16 {
+            switch self {
+            case .contact:
+                return 1
+            case .juice:
+                return 2
+            case .order:
+                return 3
+            }
+        }
     }
 
     enum TypeCoreType {
@@ -29,16 +52,16 @@ extension App {
         case contact
         case order
 
-        var key: String {
+        var key: SaveKeys {
             switch self {
             case .image:
-                return "1"
+                return .imageCount
             case .juice:
-                return "1"
+                return .juiceCount
             case .contact:
-                return "1"
+                return .contactCount
             case .order:
-                return "1"
+                return .orderCount
             }
         }
     }

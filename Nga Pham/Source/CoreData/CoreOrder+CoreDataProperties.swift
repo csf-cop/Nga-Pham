@@ -2,7 +2,7 @@
 //  CoreOrder+CoreDataProperties.swift
 //  Nga Pham
 //
-//  Created by Tuan Dang Q. on 3/26/20.
+//  Created by Tuan Dang Q. on 3/29/20.
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 //
@@ -17,6 +17,13 @@ extension CoreOrder {
         return NSFetchRequest<CoreOrder>(entityName: "CoreOrder")
     }
 
-    @NSManaged public var id: String?
+    @NSManaged public var id: String
+    @NSManaged public var juiceName: String
+    @NSManaged public var juiceType: String
+    @NSManaged public var contactName: String?
+    @NSManaged public var phone: String
+    @NSManaged public var contactAddress: String
+    @NSManaged public var orderNote: String?
+    @NSManaged public var isDelete: Bool
 
 }
