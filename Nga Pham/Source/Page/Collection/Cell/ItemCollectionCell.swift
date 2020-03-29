@@ -28,5 +28,11 @@ extension ItemCollectionCell {
     private func updateView() {
         guard let viewModel: ItemCollectionCellModel = viewModel else { return }
         itemDescriptionLabel.text = viewModel.description
+        itemImageView.image = #imageLiteral(resourceName: "img_no_image")
+//        if let imageData: Data = viewModel.avatarData {
+//            itemImageView.image = UIImage(data: imageData)
+//        } else {
+//            itemImageView.image = #imageLiteral(resourceName: "img_no_image")
+//        }
     }
 }

@@ -28,15 +28,22 @@ final class AddJuiceViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         title = "Thêm hoa quả"
+        juiceNameTextField.delegate = self
         configGesture()
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     @IBAction func addJuiceTouchUpInside(_ sender: UIButton) {
         let juiceName: String = juiceNameTextField.text.unwrapped(or: "")
         let juiceDescription: String = juiceNoteTextView.text.unwrapped(or: "")
         let unit: String = unitMersurePicker.text.unwrapped(or: "")
-        viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit)
-        dismiss(animated: true)
+        viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
+            if sussess {
+                self.dismiss(animated: true)
+            }
+        }
     }
 
     @IBAction func moreJuiceImageTouchUpInside(_ sender: UIButton) {
@@ -71,7 +78,6 @@ extension AddJuiceViewController {
         for image in images {
             image.addGestureRecognizer(uploadGesture)
         }
-        
     }
 
     private func accessToLibrary(isJuiceImage: Bool = true) {
@@ -170,8 +176,8 @@ extension AddJuiceViewController: TLPhotosPickerViewControllerDelegate {
                 juiceImageView.image = viewModel.juiceImage[0]
             }
         } else {
-            let buttons: [UIImageView] = imageDescriptionStackView.arrangedSubviews.compactMap({ $0 as? UIImageView })
-            for image in buttons {
+            let photos: [UIImageView] = imageDescriptionStackView.arrangedSubviews.compactMap({ $0 as? UIImageView })
+            for image in photos {
                 image.image = viewModel.uploadableImages[safe: image.tag].unwrapped(or: UIImage())
             }
         }
@@ -203,5 +209,12 @@ extension AddJuiceViewController {
                                                              "Selfies": App.Strings.Camera.selfies,
                                                              "Favorites": App.Strings.favorite,
                                                              "My Photo Stream": App.Strings.Camera.myPhotoStream]
+    }
+}
+
+extension AddJuiceViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

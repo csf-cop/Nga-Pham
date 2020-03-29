@@ -24,8 +24,14 @@ class JuiceCollectionCell: UICollectionViewCell {
 extension JuiceCollectionCell {
     private func settingUI() {
     }
+
     private func settingData() {
         guard let viewModel: JuiceCollectionViewModel = viewModel else { return }
         juiceDescriptionLabel?.text = viewModel.juiceDescription
+        if let image: CoreImage = viewModel.juiceImage, let data: Data = image.imageData {
+            juiceImageView.image = UIImage(data: data)
+        } else {
+            juiceImageView.image = #imageLiteral(resourceName: "img_no_image")
+        }
     }
 }

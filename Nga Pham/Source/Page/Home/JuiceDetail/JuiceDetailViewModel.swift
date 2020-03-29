@@ -9,9 +9,9 @@
 import Foundation
 
 final class JuiceDetailViewModel {
-    let juice: CoreJuice
+    let juiceModel: JuiceModel
 
-    init(data: CoreJuice) {
-        juice = data
+    init(model: JuiceModel) {
+        juiceModel = model
     }
 }

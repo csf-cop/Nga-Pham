@@ -10,7 +10,7 @@ import UIKit
 import TLPhotoPicker
 import Photos
 
-final class AddContactViewController: UIViewController {
+final class AddContactViewController: ViewController {
 
     @IBOutlet private weak var addContactButton: UIButton!
     @IBOutlet private weak var fullNameTextField: UITextField!
@@ -20,16 +20,20 @@ final class AddContactViewController: UIViewController {
     @IBOutlet private weak var avatarImageView: UIImageView!
     
     private lazy var imagePicker: UIImagePickerController = UIImagePickerController()
-    var viewModel: AddContactViewModel = AddContactViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideBackButtonText()
 
         // Do any additional setup after loading the view.
         title = "Thêm liên lạc"
         configUI()
         let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
         avatarImageView.addGestureRecognizer(gesture)
+        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     @IBAction func addContactTouchUpInside(_ sender: UIButton) {
@@ -38,16 +42,24 @@ final class AddContactViewController: UIViewController {
         let phone: String = phoneTextField.text.unwrapped(or: "")
         let note: String = noteTextView.text
 
-        if let addedContact: CoreContact = viewModel.addContact(name: name, address: address, phone: phone, note: note) {
-            notificationCenter.post(name: .ReloadContacts, object: addedContact)
+        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+        viewModel.addContact(name: name, address: address, phone: phone, note: note) { _ in 
+            notificationCenter.post(name: .ReloadContacts, object: nil)
         }
         self.dismiss(animated: true)
+    }
+
+    override func leftButtonTouchUpInside() {
+        dismiss(animated: true)
     }
 }
 
 extension AddContactViewController {
     private func configUI() {
         phoneTextField.keyboardType = .asciiCapableNumberPad
+        fullNameTextField.delegate = self
+        phoneTextField.delegate = self
+        addressTextField.delegate = self
     }
 
     @objc func pickPhoto(sender: UITapGestureRecognizer) {
@@ -157,10 +169,12 @@ extension AddContactViewController {
 // MARK: TLPhotosPickerViewControllerDelegate
 extension AddContactViewController: TLPhotosPickerViewControllerDelegate {
     func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
+        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
         viewModel.getSelectedImage(selectedAssets: withTLPHAssets)
     }
 
     func dismissComplete() {
+        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
         if !viewModel.images.isEmpty {
             avatarImageView.image = viewModel.images[0]
         }
@@ -171,6 +185,7 @@ extension AddContactViewController: TLPhotosPickerViewControllerDelegate {
 extension AddContactViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image: UIImage = info[.originalImage] as? UIImage {
+            guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
             viewModel.takePhoto(image: image)
         } else {
             navigationController?.popViewController(animated: false)
@@ -179,5 +194,12 @@ extension AddContactViewController: UINavigationControllerDelegate, UIImagePicke
             guard let image: UIImage = info[.originalImage] as? UIImage else { return }
             self.avatarImageView.image = image
         }
+    }
+}
+
+extension AddContactViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

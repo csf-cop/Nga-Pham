@@ -6,12 +6,11 @@
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 
-import Foundation
 import TLPhotoPicker
 import CoreData
 
 final class AddContactViewModel: BaseViewModel {
-    private var uploadableImages: [UIImage] = []
+    var uploadableImages: [UIImage] = []
 
     var images: [UIImage] {
         return uploadableImages
@@ -25,7 +24,6 @@ extension AddContactViewModel {
             if let image: UIImage = asset.fullResolutionImage {
                 uploadableImages.append(image)
             } else {
-                print("Can't get image at local storage, try download image")
                 asset.cloudImageDownload(progressBlock: { (progress) in
                     DispatchQueue.main.async {
                         print(progress)
@@ -47,8 +45,8 @@ extension AddContactViewModel {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 
-    func addContact(name: String, address: String, phone: String, note: String) -> CoreContact? {
-        guard let context: NSManagedObjectContext = self.context else { return nil }
+    func addContact(name: String, address: String, phone: String, note: String, completion: @escaping Completed) {
+        guard let context: NSManagedObjectContext = self.context else { return }
         let imageId: String = App.getNextImageKey(type: .image)
         let avatar: CoreImage = CoreImage(context: context)
         let contact: CoreContact = CoreContact(context: context)
@@ -59,28 +57,28 @@ extension AddContactViewModel {
             avatar.setValue(picture.toData(), forKey: "imageData")
             avatar.setValue(picture.sizeInMB, forKey: "imageFileSize")
             avatar.setValue(Date().string(withFormat: FormatType.fullTimeSecond), forKey: "imageName")
-            avatar.setValue(1, forKey: "imageTypeFor")
+            avatar.setValue(App.ImageTypeFor.contact.value, forKey: "imageTypeFor")
             avatar.setValue(Date(), forKey: "imageDateCreate")
-
             avatar.save(success: {
-                contact.setValue(App.getNextImageKey(type: .contact), forKey: "id")
-                contact.setValue(name, forKey: "fullName")
-                contact.setValue(phone, forKey: "phone")
-                contact.setValue(address, forKey: "addressPrimary")
-                contact.setValue(address, forKey: "addressOther")
-                contact.setValue(note, forKey: "noteInfo")
-                contact.re_Avatar = avatar
-
-                contact.save(success: {
-                    print("Create user success")
-                }) { (err) in
-                    print("Create user fail: \(err.localizedDescription)")
-                }
+                contact.avatarId = avatar.id
+                completion(true)
             }) { (err) in
-                print("Create user fail: \(err.localizedDescription)")
+                self.handleErrorMessage?(err)
+                completion(false)
+                return
             }
         }
+        contact.setValue(App.getNextImageKey(type: .contact), forKey: "id")
+        contact.setValue(name, forKey: "fullName")
+        contact.setValue(phone, forKey: "phone")
+        contact.setValue(address, forKey: "addressPrimary")
+        contact.setValue(address, forKey: "addressOther")
+        contact.setValue(note, forKey: "noteInfo")
 
-        return contact
+        contact.save(success: {
+            completion(true)
+        }) { (err) in
+            completion(false)
+        }
     }
 }
