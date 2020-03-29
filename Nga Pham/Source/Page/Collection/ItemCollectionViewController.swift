@@ -19,6 +19,10 @@ final class ItemCollectionViewController: ViewController {
         configTableUI()
         let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.orderJuice))
         addNewImageView.addGestureRecognizer(gesture)
+        guard let viewModel: ItemCollectionViewModel = viewModel as? ItemCollectionViewModel else { return }
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 }
 
@@ -55,8 +59,8 @@ extension ItemCollectionViewController: UITableViewDataSource {
 extension ItemCollectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel: ItemCollectionViewModel = viewModel as? ItemCollectionViewModel else { return }
-        let juiceDetail: JuiceDetailViewController = JuiceDetailViewController()
-        juiceDetail.viewModel = viewModel.modelCellDetail(at: indexPath)
-        navigationController?.pushViewController(juiceDetail, animated: true)
+        let orderDetail: OrderJuiceViewController = OrderJuiceViewController()
+        orderDetail.viewModel = viewModel.modelCellDetail(at: indexPath)
+        navigationController?.pushViewController(orderDetail, animated: true)
     }
 }

@@ -14,7 +14,7 @@ final class JuiceCollectionViewModel {
     let juiceImage: CoreImage?
 
     init(model: JuiceModel) {
-        juiceDescription = model.juice.juiceDescription.unwrapped(or: "")
+        juiceDescription = model.juice.juiceName
         juiceImage = model.avatar
     }
 }

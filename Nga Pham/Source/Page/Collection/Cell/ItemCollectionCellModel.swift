@@ -10,10 +10,8 @@ import Foundation
 
 final class ItemCollectionCellModel {
     let description: String
-    let avatarData: Data?
 
-    init(model: JuiceModel) {
-        description = model.juice.juiceDescription.unwrapped(or: "")
-        avatarData = model.avatar?.imageData
+    init(model: CoreOrder) {
+        description = model.contactName.unwrapped(or: "default")
     }
 }

@@ -10,11 +10,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderJuiceViewController" customModule="Nga_Pham" customModuleProvider="target">
             <connections>
+                <outlet property="addressTextField" destination="3P4-rU-HCS" id="W3q-gg-k6i"/>
                 <outlet property="imagesStackView" destination="QkO-hf-D8n" id="gXi-AU-GiK"/>
                 <outlet property="juiceTypeLabel" destination="6GV-YZ-Wgq" id="5NW-cs-xeP"/>
                 <outlet property="juiceTypePickup" destination="0Zh-6g-mbv" id="TTM-vd-Scy"/>
                 <outlet property="juiceUnitLabel" destination="wdF-dj-PKV" id="blS-Ko-tYa"/>
                 <outlet property="juiceUnitPickup" destination="6bf-c8-t6w" id="h2k-kE-D4n"/>
+                <outlet property="orderNameTextField" destination="Bwe-ST-Vy5" id="qkJ-tA-0wo"/>
+                <outlet property="orderNoteTextView" destination="ams-WF-0bF" id="jC7-x0-2ZI"/>
+                <outlet property="phoneTextField" destination="roV-gb-3Tt" id="dVE-bW-rk2"/>
+                <outlet property="saveToNextTimesSwitch" destination="Wo1-el-lPg" id="G4f-TC-O6s"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -184,6 +189,11 @@
                                 <constraint firstAttribute="trailing" secondItem="csR-IT-Ycr" secondAttribute="trailing" constant="10" id="y8j-bC-avv"/>
                             </constraints>
                         </view>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roV-gb-3Tt" userLabel="phone">
+                            <rect key="frame" x="20" y="284.5" width="280" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Địa chỉ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3P4-rU-HCS" userLabel="Address">
                             <rect key="frame" x="20" y="354.5" width="280" height="50"/>
                             <constraints>
@@ -238,28 +248,37 @@
                             <rect key="frame" x="20" y="577" width="280" height="136.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yêu cầu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQM-0A-htK" userLabel="title">
-                                    <rect key="frame" x="0.0" y="0.0" width="67.5" height="21.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="21.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l9S-ao-DWK" userLabel="note">
-                                    <rect key="frame" x="0.0" y="31.5" width="280" height="100"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="100" id="b2D-bo-PFT"/>
-                                    </constraints>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ams-WF-0bF">
+                                    <rect key="frame" x="0.0" y="31.5" width="280" height="95"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="0.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstItem="l9S-ao-DWK" firstAttribute="top" secondItem="bQM-0A-htK" secondAttribute="bottom" constant="10" id="3h4-Jt-Pwi"/>
+                                <constraint firstItem="bQM-0A-htK" firstAttribute="centerX" secondItem="Mky-6Y-x1E" secondAttribute="centerX" id="7eb-Jz-Wkl"/>
                                 <constraint firstItem="bQM-0A-htK" firstAttribute="top" secondItem="Mky-6Y-x1E" secondAttribute="top" id="A7z-XJ-9p0"/>
-                                <constraint firstItem="l9S-ao-DWK" firstAttribute="leading" secondItem="Mky-6Y-x1E" secondAttribute="leading" id="Wxz-d4-HTH"/>
+                                <constraint firstAttribute="bottom" secondItem="ams-WF-0bF" secondAttribute="bottom" constant="10" id="Jde-cu-Znd"/>
+                                <constraint firstAttribute="height" constant="136.5" id="Z9X-ls-hby"/>
+                                <constraint firstItem="ams-WF-0bF" firstAttribute="leading" secondItem="bQM-0A-htK" secondAttribute="leading" id="bhD-Y9-Eei"/>
                                 <constraint firstItem="bQM-0A-htK" firstAttribute="leading" secondItem="Mky-6Y-x1E" secondAttribute="leading" id="fHj-Ln-UaI"/>
-                                <constraint firstAttribute="trailing" secondItem="l9S-ao-DWK" secondAttribute="trailing" id="tUb-QU-Ato"/>
-                                <constraint firstAttribute="bottom" secondItem="l9S-ao-DWK" secondAttribute="bottom" constant="5" id="va6-x2-1HN"/>
+                                <constraint firstItem="ams-WF-0bF" firstAttribute="top" secondItem="bQM-0A-htK" secondAttribute="bottom" constant="10" id="iRa-I5-su4"/>
+                                <constraint firstItem="ams-WF-0bF" firstAttribute="trailing" secondItem="bQM-0A-htK" secondAttribute="trailing" id="wvR-Y3-JZb"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61y-40-fV9" userLabel="Unit">
@@ -289,11 +308,6 @@
                                 <constraint firstItem="o0w-CP-ae0" firstAttribute="leading" secondItem="Wo1-el-lPg" secondAttribute="trailing" constant="15" id="yll-6v-mvL"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Số điện thoại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="roV-gb-3Tt" userLabel="phone">
-                            <rect key="frame" x="20" y="284.5" width="280" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                     </subviews>
                     <constraints>
                         <constraint firstItem="3P4-rU-HCS" firstAttribute="centerX" secondItem="hL5-jW-tOd" secondAttribute="centerX" id="0zR-II-m3g"/>

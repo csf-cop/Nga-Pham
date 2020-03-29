@@ -47,28 +47,24 @@ extension AddJuiceViewModel {
     func addJuice(name: String, description: String, unit: String, completion: @escaping Completed) {
         guard let context: NSManagedObjectContext = self.context else { return }
 
-        let avatar: CoreImage = CoreImage(context: context)
-        avatar.id = App.getNextImageKey(type: .image)
+        var nextPhotoId: String = ""
         if juiceImage.isEmpty == false {
-            avatar.imageData = juiceImage[0].toData()
-        }
-        avatar.imageFileSize = Float(juiceImage[0].sizeInMB)
-        avatar.imageTypeFor = 1
-        avatar.imageIndex = 0
-        avatar.isDelete = false
-
-        let juice: CoreJuice = CoreJuice(context: context)
-        juice.id = App.getNextImageKey(type: .juice)
-        juice.juiceName = name
-        juice.juiceDescription = description
-        juice.isDelete = false
-
-        avatar.save(success: {
-            juice.juicePhotoId = avatar.id
-        }) { (err) in
-            self.handleErrorMessage?(err)
-            completion(false)
-            return
+            let avatar: CoreImage = CoreImage(context: context)
+            avatar.id = App.getNextImageKey(type: .image)
+            if juiceImage.isEmpty == false {
+                avatar.imageData = juiceImage[0].toData()
+            }
+            avatar.imageFileSize = Float(juiceImage[0].sizeInMB)
+            avatar.imageTypeFor = 1
+            avatar.imageIndex = 0
+            avatar.isDelete = false
+            avatar.save(success: {
+                nextPhotoId = avatar.id
+            }) { (err) in
+                self.handleErrorMessage?(err)
+                completion(false)
+                return
+            }
         }
 
         var photosId: [String] = []
@@ -88,7 +84,18 @@ extension AddJuiceViewModel {
                 return
             }
         }
-        juice.juiceMorePhotos = try? JSONSerialization.data(withJSONObject: photosId, options: [])
+
+        let juice: CoreJuice = CoreJuice(context: context)
+        juice.id = App.getNextImageKey(type: .juice)
+        juice.juiceName = name
+        juice.juiceDescription = description
+        juice.isDelete = false
+        if nextPhotoId.isEmpty == false {
+            juice.juicePhotoId = nextPhotoId
+        }
+        if !photosId.isEmpty {
+            juice.juiceMorePhotos = try? JSONSerialization.data(withJSONObject: photosId, options: [])
+        }
         juice.save(success: {
             completion(true)
         }) { (err) in

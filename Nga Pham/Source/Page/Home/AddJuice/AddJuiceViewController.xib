@@ -111,18 +111,11 @@
                                     <rect key="frame" x="0.0" y="26.5" width="280" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRH-FZ-pX9">
-                                            <rect key="frame" x="20" y="20" width="219" height="0.0"/>
+                                            <rect key="frame" x="20" y="20" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="kEW-YZ-ZGU">
-                                            <rect key="frame" x="244" y="15" width="16" height="10"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="VC0-dg-aQL"/>
-                                                <constraint firstAttribute="height" constant="10" id="faT-Zr-tfv"/>
-                                            </constraints>
-                                        </imageView>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-NP-2v0" customClass="PickerViewTextField" customModule="Nga_Pham" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,13 +128,10 @@
                                         <constraint firstItem="UCt-NP-2v0" firstAttribute="centerX" secondItem="lHm-Rl-DbP" secondAttribute="centerX" id="2aU-nw-eyq"/>
                                         <constraint firstItem="CRH-FZ-pX9" firstAttribute="leading" secondItem="lHm-Rl-DbP" secondAttribute="leading" constant="20" id="Bl8-g3-z56"/>
                                         <constraint firstAttribute="bottom" secondItem="UCt-NP-2v0" secondAttribute="bottom" id="D1f-bf-q6E"/>
-                                        <constraint firstItem="kEW-YZ-ZGU" firstAttribute="centerY" secondItem="UCt-NP-2v0" secondAttribute="centerY" id="Qwy-Ue-FHI"/>
                                         <constraint firstItem="UCt-NP-2v0" firstAttribute="leading" secondItem="lHm-Rl-DbP" secondAttribute="leading" id="SAn-bq-ks4"/>
-                                        <constraint firstAttribute="trailing" secondItem="kEW-YZ-ZGU" secondAttribute="trailing" constant="20" id="c9a-sI-lbL"/>
                                         <constraint firstItem="UCt-NP-2v0" firstAttribute="top" secondItem="lHm-Rl-DbP" secondAttribute="top" id="hGk-Vd-Q1c"/>
                                         <constraint firstAttribute="height" constant="40" id="mLI-SH-JRn"/>
                                         <constraint firstItem="CRH-FZ-pX9" firstAttribute="centerY" secondItem="lHm-Rl-DbP" secondAttribute="centerY" id="nqA-kt-9qP"/>
-                                        <constraint firstItem="kEW-YZ-ZGU" firstAttribute="leading" secondItem="CRH-FZ-pX9" secondAttribute="trailing" constant="5" id="ui3-iB-CzE"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -276,7 +266,6 @@
     </objects>
     <resources>
         <image name="add-icon" width="24" height="24"/>
-        <image name="arrow.png" width="18" height="18"/>
         <image name="img_no_image" width="800" height="600"/>
         <image name="insertPhotoMaterial.png" width="40" height="40"/>
     </resources>

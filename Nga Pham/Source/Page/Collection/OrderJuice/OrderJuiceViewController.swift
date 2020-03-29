@@ -12,12 +12,16 @@ import Photos
 
 final class OrderJuiceViewController: ViewController {
 
-
     @IBOutlet private weak var juiceTypePickup: PickerViewTextField!
     @IBOutlet private weak var juiceUnitPickup: PickerViewTextField!
     @IBOutlet private weak var juiceTypeLabel: UILabel!
     @IBOutlet private weak var juiceUnitLabel: UILabel!
     @IBOutlet private weak var imagesStackView: UIStackView!
+    @IBOutlet private weak var orderNameTextField: UITextField!
+    @IBOutlet private weak var phoneTextField: UITextField!
+    @IBOutlet private weak var addressTextField: UITextField!
+    @IBOutlet private weak var orderNoteTextView: UITextView!
+    @IBOutlet private weak var saveToNextTimesSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,10 @@ final class OrderJuiceViewController: ViewController {
         // Do any additional setup after loading the view.
         title = "Đặt trái cây"
         loadData()
+        guard let viewModel: OrderJuiceViewModel = viewModel as? OrderJuiceViewModel else { return }
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     @IBAction func addImagesTouchUpInside(_ sender: UIButton) {
@@ -32,16 +40,27 @@ final class OrderJuiceViewController: ViewController {
     }
 
     @IBAction func orderTouchUpInside(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        guard let viewModel: OrderJuiceViewModel = viewModel as? OrderJuiceViewModel else { return }
+        viewModel.addOrderJuice(name: juiceTypeLabel.text.unwrapped(or: ""), unit: juiceUnitLabel.text.unwrapped(or: ""), withName: orderNameTextField.text, phone: phoneTextField.text.unwrapped(or: ""), address: addressTextField.text.unwrapped(or: ""), note: orderNoteTextView.text, isSave: saveToNextTimesSwitch.isOn) { [] isSuccess in
+            if isSuccess {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
     }
 }
 
 extension OrderJuiceViewController {
     private func loadData() {
         guard let viewModel: OrderJuiceViewModel = viewModel as? OrderJuiceViewModel else { return }
-        juiceTypePickup.delegateTextFieldPicker = self
-        juiceTypePickup.delegate = self
-        juiceTypePickup.updateData(datas: viewModel.fetchCategoriesType(), selectedDatas: [])
+        showIndicator()
+        viewModel.fetchCategoriesType { [] isSuccess in
+            self.hideIndicator()
+            if isSuccess {
+                self.juiceTypePickup.delegateTextFieldPicker = self
+                self.juiceTypePickup.delegate = self
+                self.juiceTypePickup.updateData(datas: viewModel.juicesName, selectedDatas: [])
+            }
+        }
         juiceUnitPickup.delegateTextFieldPicker = self
         juiceUnitPickup.delegate = self
         juiceUnitPickup.updateData(datas: viewModel.fetchCategoriesUnit(), selectedDatas: [])

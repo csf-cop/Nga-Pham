@@ -26,6 +26,7 @@ final class JuiceDetailViewController: UIViewController {
     }
     @IBAction func orderJuiceTouchUpInside(_ sender: UIButton) {
         let orderVC: OrderJuiceViewController = OrderJuiceViewController()
+        orderVC.viewModel = OrderJuiceViewModel()
         navigationController?.pushViewController(orderVC, animated: true)
     }
 }

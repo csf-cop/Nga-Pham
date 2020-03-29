@@ -22,10 +22,10 @@ final class HomeViewController: ViewController {
         let singleTapGest: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(moveToAddJuice))
         addNewImageView.addGestureRecognizer(singleTapGest)
 
-//        guard let viewModel: HomeViewModel = viewModel as? HomeViewModel else { return }
-//        viewModel.handleErrorMessage = { [weak self] error in
-//            self?.showError(error)
-//        }
+        guard let viewModel: HomeViewModel = viewModel as? HomeViewModel else { return }
+        viewModel.handleErrorMessage = { [weak self] error in
+            self?.showError(error)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
