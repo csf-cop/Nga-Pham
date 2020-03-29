@@ -6,12 +6,11 @@
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 
-import Foundation
 import TLPhotoPicker
 import CoreData
 
 final class AddContactViewModel: BaseViewModel {
-    private var uploadableImages: [UIImage] = []
+    var uploadableImages: [UIImage] = []
 
     var images: [UIImage] {
         return uploadableImages

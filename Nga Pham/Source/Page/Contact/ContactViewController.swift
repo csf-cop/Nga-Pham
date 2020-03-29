@@ -40,8 +40,7 @@ extension ContactViewController {
     @objc private func addContact(sender: UITapGestureRecognizer) {
         let contactVC: AddContactViewController = AddContactViewController()
         contactVC.viewModel = AddContactViewModel()
-        let navi: UINavigationController = UINavigationController(rootViewController: contactVC)
-        present(navi, animated: true)
+        navigationController?.pushViewController(contactVC, animated: true)
     }
 
     private func configTableView() {

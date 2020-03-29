@@ -176,8 +176,8 @@ extension AddJuiceViewController: TLPhotosPickerViewControllerDelegate {
                 juiceImageView.image = viewModel.juiceImage[0]
             }
         } else {
-            let buttons: [UIImageView] = imageDescriptionStackView.arrangedSubviews.compactMap({ $0 as? UIImageView })
-            for image in buttons {
+            let photos: [UIImageView] = imageDescriptionStackView.arrangedSubviews.compactMap({ $0 as? UIImageView })
+            for image in photos {
                 image.image = viewModel.uploadableImages[safe: image.tag].unwrapped(or: UIImage())
             }
         }

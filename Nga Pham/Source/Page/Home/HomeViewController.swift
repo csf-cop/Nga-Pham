@@ -38,8 +38,7 @@ extension HomeViewController {
     @objc private func moveToAddJuice(sender: UITapGestureRecognizer) {
         let addJuiceVC: AddJuiceViewController = AddJuiceViewController()
         addJuiceVC.viewModel = AddJuiceViewModel()
-        let navi: UINavigationController = UINavigationController(rootViewController: addJuiceVC)
-        present(navi, animated: true)
+        navigationController?.pushViewController(addJuiceVC, animated: true)
     }
 
     private func configCollection() {

@@ -256,6 +256,7 @@
 		3111A4122423BEFF00906219 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				3111A42A2423CA6100906219 /* AddContact */,
 				3111A4342423D97900906219 /* ContactDetail */,
 				3111A41C2423C9D000906219 /* Cell */,
 				3111A4132423BF2F00906219 /* ContactViewController.swift */,
@@ -268,7 +269,6 @@
 		3111A41B2423C64400906219 /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				3111A4232423CA0A00906219 /* Add */,
 				31DD4D36241FB8AA00E8667F /* Collection */,
 				3111A4122423BEFF00906219 /* Contact */,
 				31DD4D2E241FB7C800E8667F /* Home */,
@@ -287,16 +287,6 @@
 				31393ABE24243672007D3004 /* ContactViewCell.xib */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		3111A4232423CA0A00906219 /* Add */ = {
-			isa = PBXGroup;
-			children = (
-				3111A42D2423D1C000906219 /* AddJuice */,
-				3111A42A2423CA6100906219 /* AddContact */,
-				31DD4D5F241FE70800E8667F /* OrderJuice */,
-			);
-			path = Add;
 			sourceTree = "<group>";
 		};
 		3111A42A2423CA6100906219 /* AddContact */ = {
@@ -494,10 +484,11 @@
 		31DD4D2E241FB7C800E8667F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3111A42D2423D1C000906219 /* AddJuice */,
 				31DD4D51241FCDB200E8667F /* JuiceDetail */,
 				31DD4D46241FC3FF00E8667F /* Cell */,
-				31DD4D23241FA89F00E8667F /* HomeViewController.xib */,
 				31DD4D22241FA89F00E8667F /* HomeViewController.swift */,
+				31DD4D23241FA89F00E8667F /* HomeViewController.xib */,
 				31DD4D44241FC12A00E8667F /* HomeViewModel.swift */,
 			);
 			path = Home;
@@ -516,6 +507,7 @@
 		31DD4D36241FB8AA00E8667F /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				31DD4D5F241FE70800E8667F /* OrderJuice */,
 				3109379C24207BCD00732F97 /* Cell */,
 				31DD4D40241FB93E00E8667F /* ItemCollectionViewController.swift */,
 				31DD4D41241FB93E00E8667F /* ItemCollectionViewController.xib */,
