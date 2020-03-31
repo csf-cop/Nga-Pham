@@ -40,9 +40,9 @@ extension UIViewController {
 
     func showError(_ error: Error, completion: ((Int) -> Void)? = nil) {
         var messageError = error.localizedDescription
-        if let msg = (error as? ApiError)?.message {
-            messageError = msg
-        }
+//        if let msg = (error as? ApiError)?.message {
+//            messageError = msg
+//        }
         alert(message: messageError, completion: completion)
     }
 }
