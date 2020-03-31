@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.0.2)
+  - Alamofire (4.8.2)
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
@@ -19,14 +19,14 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (9.0.0)
   - OHHTTPStubs/Swift (9.0.0):
     - OHHTTPStubs/Default
-  - Parchment (2.0.1)
+  - Parchment (2.2.0)
   - SwiftAudio (0.11.2)
   - SwiftLint (0.39.1)
   - TLPhotoPicker (2.0.11)
   - YoutubePlayer-in-WKWebView (0.3.4)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (= 4.8.2)
   - Charts
   - IQKeyboardManagerSwift
   - KeychainAccess
@@ -53,18 +53,18 @@ SPEC REPOS:
     - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
-  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  Parchment: 00cb7d0d0a38f5a4a7e089ec59637b970a58c0f0
+  Parchment: 6036c141be0db50d0f08bf6992d9f66f401b1a64
   SwiftAudio: 217f5f184b27a0e25ff0fe7647021f05a21c06c9
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TLPhotoPicker: a5c339732b8326bb16cbb4e00ed01a86f2bfbbb3
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 3faf1a29389e75cad43b84a45e20a6724ebf5bc2
+PODFILE CHECKSUM: 8fc613da40ae7cad3a9e353a40e1ae84b5fc1788
 
 COCOAPODS: 1.8.3

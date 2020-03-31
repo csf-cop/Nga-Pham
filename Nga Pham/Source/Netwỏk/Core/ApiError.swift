@@ -2,7 +2,7 @@
 //  ApiError.swift
 //  Nga Pham
 //
-//  Created by Tuan Dang Q. on 3/20/20.
+//  Created by Tuan Dang Q. on 3/31/20.
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 
@@ -17,17 +17,6 @@ enum ApiError: Error {
     case noResponse(Error?)
     case serverError(Error)
 
-    #if os(watchOS)
-    var title: String {
-        switch self {
-        case .lostNetwork:
-            return App.Strings.noInternetConnectionTitle
-        default:
-            return ""
-        }
-    }
-    #endif
-
     var message: String {
         switch self {
         case .notReachable:
@@ -35,11 +24,7 @@ enum ApiError: Error {
         case .notFound:
             return "Not Found"
         case .lostNetwork:
-            #if os(watchOS)
-                return App.Strings.noInternetConnectionMsg
-            #else
-                return "Lost Network"
-            #endif
+            return "Lost Network"
         case .emptyData:
             return getMessageError()
         case .noResponse:

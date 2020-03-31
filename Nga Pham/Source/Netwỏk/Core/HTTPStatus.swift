@@ -2,7 +2,7 @@
 //  HTTPStatus.swift
 //  Nga Pham
 //
-//  Created by Tuan Dang Q. on 3/20/20.
+//  Created by Tuan Dang Q. on 3/31/20.
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 
@@ -10,8 +10,7 @@ import Foundation
 
 public enum HTTPStatus: Int {
     case unknown = -1
-    case uuidError
-    case tokenError = 403
+    case uuidError, tokenError = 403
 
     public init?(code: Int) {
         self.init(rawValue: code)

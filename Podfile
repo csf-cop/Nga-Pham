@@ -7,7 +7,7 @@ target 'Nga Pham' do
 
   # Pods for Nga Pham
   pod 'SwiftLint'
-  pod 'Alamofire'
+  pod 'Alamofire', '4.8.2'
   pod 'Charts'
   pod 'Parchment'
   pod 'KeychainAccess'
