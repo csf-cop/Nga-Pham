@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SplashViewController: UIViewController {
+final class SplashViewController: ViewController {
 
     @IBOutlet private weak var logoView: UIView!
 
@@ -26,8 +26,15 @@ extension SplashViewController {
     }
 
     @objc private func checkHomeConditions() {
-        let root: MainTabbarViewController = MainTabbarViewController()
-        let navi: UINavigationController = UINavigationController(rootViewController: root)
-        UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.rootViewController = navi
+        showIndicator()
+        guard let viewModel: SplashViewModel = viewModel as? SplashViewModel else { return }
+        viewModel.fetchOders { [] isSuccess in
+            self.hideIndicator()
+            if isSuccess {
+                let root: MainTabbarViewController = MainTabbarViewController()
+                let navi: UINavigationController = UINavigationController(rootViewController: root)
+                UIApplication.shared.windows.filter{$0.isKeyWindow}.first?.rootViewController = navi
+            }
+        }
     }
 }

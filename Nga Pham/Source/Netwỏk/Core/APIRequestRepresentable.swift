@@ -49,19 +49,15 @@ extension APIRequestRepresentable {
     }
 
     static func logResponse(data: DataResponse<Any>) {
-        if let mode = App.Mode(rawValue: Environment.mode), mode == .debug {
-            print("RESPONSE DATA:")
-            print("--\(String(describing: data.request?.url?.absoluteString))")
-            print("--\(String(describing: data.result.value))")
-            print("--\(String(describing: data.error)) \n")
-        }
+        print("RESPONSE DATA:")
+        print("--\(String(describing: data.request?.url?.absoluteString))")
+        print("--\(String(describing: data.result.value))")
+        print("--\(String(describing: data.error)) \n")
     }
 
     static func logRequest(data: [String: Any]) {
-        if let mode = App.Mode(rawValue: Environment.mode), mode == .debug {
-            print("REQUEST DATA:")
-            print("\(data)\n")
-        }
+        print("REQUEST DATA:")
+        print("\(data)\n")
     }
 
     static func request(parameters: [String: Any]? = nil, callback: @escaping (Result<GPResponse<CodableType>>) -> Void) -> DataRequest? {

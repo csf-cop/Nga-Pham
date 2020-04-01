@@ -15,6 +15,11 @@
 		310937A024207C2700732F97 /* ItemCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3109379E24207C2700732F97 /* ItemCollectionCell.xib */; };
 		310937A224207D5B00732F97 /* ItemCollectionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310937A124207D5B00732F97 /* ItemCollectionCellModel.swift */; };
 		310937A424207F5400732F97 /* UITableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310937A324207F5400732F97 /* UITableViewExt.swift */; };
+		310B6954243425F3003A662B /* OrderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B6953243425F3003A662B /* OrderProvider.swift */; };
+		310B695624342636003A662B /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B695524342636003A662B /* OrderModel.swift */; };
+		310B69592434275A003A662B /* OrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B69582434275A003A662B /* OrderRequest.swift */; };
+		310B695B24344282003A662B /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B695A24344282003A662B /* SplashViewModel.swift */; };
+		310B695E243443FF003A662B /* OrderInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 310B695D243443FF003A662B /* OrderInfo.json */; };
 		310C8EAB24287C8C0021C7B0 /* Pods_Nga_Pham.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDDF499C0BE4B8653E4AE1B /* Pods_Nga_Pham.framework */; };
 		310C8EAC24287C8D0021C7B0 /* Pods_Nga_Pham.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDDF499C0BE4B8653E4AE1B /* Pods_Nga_Pham.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3111A4152423BF2F00906219 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4132423BF2F00906219 /* ContactViewController.swift */; };
@@ -146,6 +151,11 @@
 		3109379E24207C2700732F97 /* ItemCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionCell.xib; sourceTree = "<group>"; };
 		310937A124207D5B00732F97 /* ItemCollectionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionCellModel.swift; sourceTree = "<group>"; };
 		310937A324207F5400732F97 /* UITableViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExt.swift; sourceTree = "<group>"; };
+		310B6953243425F3003A662B /* OrderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProvider.swift; sourceTree = "<group>"; };
+		310B695524342636003A662B /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		310B69582434275A003A662B /* OrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRequest.swift; sourceTree = "<group>"; };
+		310B695A24344282003A662B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		310B695D243443FF003A662B /* OrderInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OrderInfo.json; sourceTree = "<group>"; };
 		3111A4132423BF2F00906219 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		3111A4142423BF2F00906219 /* ContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewController.xib; sourceTree = "<group>"; };
 		3111A4172423C06A00906219 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
@@ -279,6 +289,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		310B69572434273E003A662B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				310B69582434275A003A662B /* OrderRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		310B695C243443BE003A662B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				31DD4D14241FA7D900E8667F /* Assets.xcassets */,
+				310B695D243443FF003A662B /* OrderInfo.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		3111A4122423BEFF00906219 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,9 +375,10 @@
 		316FAE6F24246C6F00733952 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				31E167BE242BB339006E78E2 /* Provider */,
-				3176D7D42426724A000BC6DF /* Model */,
 				316FAE7024246C8400733952 /* Core */,
+				3176D7D42426724A000BC6DF /* Model */,
+				31E167BE242BB339006E78E2 /* Provider */,
+				310B69572434273E003A662B /* Request */,
 			);
 			name = Network;
 			path = "Netwỏk";
@@ -359,12 +387,12 @@
 		316FAE7024246C8400733952 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				31162D4E2433A54E005A43EF /* APIRequestRepresentable.swift */,
 				31162D502433A578005A43EF /* Api.swift */,
 				31162D522433A594005A43EF /* ApiError.swift */,
-				31162D542433A5AA005A43EF /* HTTPStatus.swift */,
+				31162D4E2433A54E005A43EF /* APIRequestRepresentable.swift */,
 				31162D562433A5BE005A43EF /* APIRequestRepresentableExtra.swift */,
 				31162D582433A5D6005A43EF /* APIRequestRepresentableOriginal.swift */,
+				31162D542433A5AA005A43EF /* HTTPStatus.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -410,11 +438,12 @@
 		3176D7D42426724A000BC6DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				31162D5E2433A62F005A43EF /* Base.swift */,
 				31E167D5242BB502006E78E2 /* ContactModel.swift */,
-				31E167D7242BB6A5006E78E2 /* JuiceModel.swift */,
 				31162D5A2433A602005A43EF /* ExtraResponse.swift */,
 				31162D5C2433A618005A43EF /* GPRespose.swift */,
-				31162D5E2433A62F005A43EF /* Base.swift */,
+				31E167D7242BB6A5006E78E2 /* JuiceModel.swift */,
+				310B695524342636003A662B /* OrderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,13 +502,11 @@
 		31DD4D0A241FA7D800E8667F /* Nga Pham */ = {
 			isa = PBXGroup;
 			children = (
-				31DD4D2C241FB7B500E8667F /* Source */,
-				31DD4D0B241FA7D800E8667F /* AppDelegate.swift */,
-				31DD4D2A241FB59100E8667F /* Application.swift */,
-				31DD4D14241FA7D900E8667F /* Assets.xcassets */,
 				31DD4D1C241FA7D900E8667F /* Info.plist */,
 				31DD4D0F241FA7D800E8667F /* Nga_Pham.xcdatamodeld */,
 				31DD4D16241FA7D900E8667F /* Preview Content */,
+				310B695C243443BE003A662B /* Resource */,
+				31DD4D2C241FB7B500E8667F /* Source */,
 			);
 			path = "Nga Pham";
 			sourceTree = "<group>";
@@ -495,12 +522,14 @@
 		31DD4D2C241FB7B500E8667F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				31C27018242EC70A004ED542 /* Library */,
+				31DD4D0B241FA7D800E8667F /* AppDelegate.swift */,
+				31DD4D2A241FB59100E8667F /* Application.swift */,
 				31CA89242426105B00D42170 /* CoreData */,
-				316FAE6F24246C6F00733952 /* Network */,
-				3111A41B2423C64400906219 /* Page */,
 				31DD4D66241FE88F00E8667F /* Custom */,
 				31DD4D5A241FDBC100E8667F /* Ext */,
+				31C27018242EC70A004ED542 /* Library */,
+				316FAE6F24246C6F00733952 /* Network */,
+				3111A41B2423C64400906219 /* Page */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -510,6 +539,7 @@
 			children = (
 				31DD4D26241FB20C00E8667F /* SplashViewController.swift */,
 				31DD4D27241FB20C00E8667F /* SplashViewController.xib */,
+				310B695A24344282003A662B /* SplashViewModel.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -660,6 +690,7 @@
 		31E167BE242BB339006E78E2 /* Provider */ = {
 			isa = PBXGroup;
 			children = (
+				310B6953243425F3003A662B /* OrderProvider.swift */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -744,6 +775,7 @@
 			files = (
 				31DD4D3B241FB8D400E8667F /* SettingViewController.xib in Resources */,
 				316FAE942424994000733952 /* SyncDataViewController.xib in Resources */,
+				310B695E243443FF003A662B /* OrderInfo.json in Resources */,
 				3111A4162423BF2F00906219 /* ContactViewController.xib in Resources */,
 				31DD4D55241FCDCE00E8667F /* JuiceDetailViewController.xib in Resources */,
 				316FAE9B242499FB00733952 /* SoftwareInfoViewController.xib in Resources */,
@@ -830,6 +862,7 @@
 				31CA89782426269C00D42170 /* BaseViewModel.swift in Sources */,
 				31DD4D65241FE76800E8667F /* OrderJuiceViewModel.swift in Sources */,
 				31162D672433AAA3005A43EF /* DataExt.swift in Sources */,
+				310B695624342636003A662B /* OrderModel.swift in Sources */,
 				31DD4D70241FE97F00E8667F /* Toolbar.swift in Sources */,
 				316FAE9D24249A1A00733952 /* SoftwareInfoViewModel.swift in Sources */,
 				31DD06F9242C968000E17C6C /* CoreOrder+CoreDataProperties.swift in Sources */,
@@ -848,6 +881,7 @@
 				310937A424207F5400732F97 /* UITableViewExt.swift in Sources */,
 				31162D532433A594005A43EF /* ApiError.swift in Sources */,
 				3109379B24207B6A00732F97 /* ItemCollectionViewModel.swift in Sources */,
+				310B6954243425F3003A662B /* OrderProvider.swift in Sources */,
 				31DD4D7A241FEC1700E8667F /* StringExt.swift in Sources */,
 				3111A41A2423C15C00906219 /* SettingViewModel.swift in Sources */,
 				31DD4D78241FEAD100E8667F /* Action.swift in Sources */,
@@ -873,6 +907,7 @@
 				31DD06FB242C968000E17C6C /* CoreContact+CoreDataProperties.swift in Sources */,
 				31162D512433A578005A43EF /* Api.swift in Sources */,
 				31DD4D32241FB80B00E8667F /* MainTabbarViewController.swift in Sources */,
+				310B695B24344282003A662B /* SplashViewModel.swift in Sources */,
 				31DD4D68241FE8B900E8667F /* PickerViewTextField.swift in Sources */,
 				316FAE932424994000733952 /* SyncDataViewController.swift in Sources */,
 				316FAE832424748900733952 /* Popup.swift in Sources */,
@@ -893,6 +928,7 @@
 				31CC0F48242524C40082E4FB /* NotificationExt.swift in Sources */,
 				3111A4372423D99500906219 /* ContactDetailViewController.swift in Sources */,
 				3111A4152423BF2F00906219 /* ContactViewController.swift in Sources */,
+				310B69592434275A003A662B /* OrderRequest.swift in Sources */,
 				31DD4D24241FA89F00E8667F /* HomeViewController.swift in Sources */,
 				31DD4D72241FE9F300E8667F /* NumberPickerViewTextField.swift in Sources */,
 				31162D3924339CA3005A43EF /* Environment.swift in Sources */,
