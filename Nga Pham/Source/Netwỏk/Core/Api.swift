@@ -28,19 +28,12 @@ final class Api {
     static let otherBaseUrl: String = Environment.baseUrl
 
     enum Endpoint {
-        case base
-        case userProfile
-        case basePathUrl
+        case getOrders
 
         var string: String {
             switch self {
-                // Base
-            case .base:
-                return "/api_base/api_auth_user"
-            case .userProfile:
-                return "/user/me"
-            case .basePathUrl:
-                return "/user/me"
+            case .getOrders:
+                return "/api/nga-pham/order"
             }
         }
     }

@@ -11,7 +11,7 @@ target 'Nga Pham' do
   pod 'Charts'
   pod 'Parchment'
   pod 'KeychainAccess'
-  pod 'OHHTTPStubs/Swift'
+  pod 'OHHTTPStubs/Swift', '8.0.0'
   pod 'IQKeyboardManagerSwift'
   pod 'TLPhotoPicker'
   pod 'MBProgressHUD'

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         let vc: SplashViewController = SplashViewController()
+        vc.viewModel = SplashViewModel()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
 

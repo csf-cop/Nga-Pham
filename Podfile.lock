@@ -6,18 +6,18 @@ PODS:
   - IQKeyboardManagerSwift (6.5.5)
   - KeychainAccess (4.1.0)
   - MBProgressHUD (1.2.0)
-  - OHHTTPStubs/Core (9.0.0)
-  - OHHTTPStubs/Default (9.0.0):
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (9.0.0):
+  - OHHTTPStubs/JSON (8.0.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (9.0.0):
+  - OHHTTPStubs/NSURLSession (8.0.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - OHHTTPStubs/Swift (9.0.0):
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
     - OHHTTPStubs/Default
   - Parchment (2.2.0)
   - SwiftAudio (0.11.2)
@@ -31,7 +31,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - KeychainAccess
   - MBProgressHUD
-  - OHHTTPStubs/Swift
+  - OHHTTPStubs/Swift (= 8.0.0)
   - Parchment
   - SwiftAudio
   - SwiftLint
@@ -58,13 +58,13 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
   Parchment: 6036c141be0db50d0f08bf6992d9f66f401b1a64
   SwiftAudio: 217f5f184b27a0e25ff0fe7647021f05a21c06c9
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TLPhotoPicker: a5c339732b8326bb16cbb4e00ed01a86f2bfbbb3
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 8fc613da40ae7cad3a9e353a40e1ae84b5fc1788
+PODFILE CHECKSUM: 431ce966df99cb2f4867f7ab7f5c8745604a7a91
 
 COCOAPODS: 1.8.3
