@@ -9,18 +9,34 @@
 import Foundation
 
 struct ContactModel: Codable {
-    var contactId: String = ""
+    var id: String = ""
     var externalId: String = ""
     var fullName: String = ""
     var avatarId: String = ""
+    var image: Data?
     var addressMap: String = ""
     var address: String = ""
     var phone: String = ""
     var noteInfo: String = ""
     var isDelete: Bool = false
 
+    init() { }
+    
+    init(id: String = "", externalId: String = "", fullName: String = "", avatarId: String = "", image: Data? = nil,
+         addressMap: String = "", address: String = "", phone: String = "", noteInfo: String = "") {
+        self.id = id
+        self.externalId = externalId
+        self.fullName = fullName
+        self.avatarId = avatarId
+        self.image = image
+        self.addressMap = addressMap
+        self.address = address
+        self.phone = phone
+        self.noteInfo = noteInfo
+    }
+
     init(from decoder: Decoder) throws {
-        contactId = try decoder.decodeIfPresent("contact_id").unwrapped(or: "")
+        id = try decoder.decodeIfPresent("id").unwrapped(or: "")
         externalId = try decoder.decodeIfPresent("external_id").unwrapped(or: "")
         fullName = try decoder.decodeIfPresent("full_name").unwrapped(or: "")
         avatarId = try decoder.decodeIfPresent("avatar_id").unwrapped(or: "")

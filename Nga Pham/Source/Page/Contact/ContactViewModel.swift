@@ -19,12 +19,13 @@ extension ContactViewModel {
     }
 
     func modelForCell(at: IndexPath) -> ContactCellModel {
-        let contact: ContactModel = contactsModel[safe: at.row].unwrapped(or: ContactModel(contact: CoreContact(), photo: nil))
-        return ContactCellModel(model: contact)
+        guard let contact: ContactModel = contactsModel[safe: at.row] else { return ContactCellModel() }
+        return ContactCellModel(id: contact.avatarId, name: contact.fullName, image: nil)
     }
 
     func contactModel(at: IndexPath) -> ContactDetailViewModel {
-        return ContactDetailViewModel(model: contactsModel[safe: at.row].unwrapped(or: ContactModel()))
+        guard let model: ContactModel = contactsModel[safe: at.row] else { return ContactDetailViewModel() }
+        return ContactDetailViewModel(id: model.id, avatar: nil, fullName: model.fullName, phone: model.phone)
     }
 
     func loadContactsData(completion: @escaping Completed) {
@@ -51,9 +52,15 @@ extension ContactViewModel {
                 return
             }
             data.forEach { contact in
-                let model: ContactModel = ContactModel()
-                model.contact = contact
-                model.avatar = photos.first(where: {$0.id.elementsEqual(contact.avatarId.unwrapped(or: ""))})
+                let avatarId: CoreImage? = photos.first(where: {$0.id.elementsEqual(contact.avatarId.unwrapped(or: ""))})
+                let model: ContactModel = ContactModel(id: contact.id, externalId: contact.externalId.unwrapped(or: ""),
+                                                       fullName: contact.fullName,
+                                                       avatarId: contact.avatarId.unwrapped(or: ""),
+                                                       image: avatarId?.imageData,
+                                                       addressMap: contact.addressMap.unwrapped(or: ""),
+                                                       address: contact.addressPrimary.unwrapped(or: ""),
+                                                       phone: contact.phone.unwrapped(or: ""),
+                                                       noteInfo: contact.noteInfo.unwrapped(or: ""))
                 self.contactsModel.append(model)
             }
         }) { (err) in

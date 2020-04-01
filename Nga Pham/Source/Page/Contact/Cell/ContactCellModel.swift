@@ -9,11 +9,13 @@
 import Foundation
 
 final class ContactCellModel {
+    let id: String
     var fullName: String
-    var avatarData: Data?
+    var avatar: Data?
 
-    init(model: ContactModel) {
-        fullName = model.contact.fullName
-        avatarData = model.avatar?.imageData
+    init(id: String = "", name: String = "", image: Data? = nil) {
+        self.id = id
+        fullName = name
+        avatar = image
     }
 }

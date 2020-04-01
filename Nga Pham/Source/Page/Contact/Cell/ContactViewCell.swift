@@ -29,7 +29,7 @@ class ContactViewCell: UICollectionViewCell {
 extension ContactViewCell {
     private func updateData(model: ContactCellModel) {
         contactNameLabel.text = model.fullName
-        if let imageData: Data = model.avatarData {
+        if let imageData: Data = model.avatar {
             avatarImageView.image = UIImage(data: imageData)
         } else {
             avatarImageView.image = #imageLiteral(resourceName: "img_no_image")

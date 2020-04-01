@@ -28,8 +28,8 @@ extension JuiceCollectionCell {
     private func settingData() {
         guard let viewModel: JuiceCollectionViewModel = viewModel else { return }
         juiceDescriptionLabel?.text = viewModel.juiceDescription
-        if let image: CoreImage = viewModel.juiceImage, let data: Data = image.imageData {
-            juiceImageView.image = UIImage(data: data)
+        if let image: Data = viewModel.juiceImage {
+            juiceImageView.image = UIImage(data: image)
         } else {
             juiceImageView.image = #imageLiteral(resourceName: "img_no_image")
         }

@@ -9,9 +9,16 @@
 import Foundation
 
 final class JuiceDetailViewModel {
-    let juiceModel: JuiceModel
+    
+    private let id: String
+    var juiceName: String
+    var juiceDescription: String
+    var photo: Data?
 
-    init(model: JuiceModel) {
-        juiceModel = model
+    init(id: String = "", name: String = "", description: String = "", image: Data? = nil) {
+        self.id = id
+        self.juiceName = name
+        self.juiceDescription = description
+        self.photo = image
     }
 }

@@ -38,10 +38,10 @@ extension JuiceDetailViewController {
 
     private func settingData() {
         guard let viewModel: JuiceDetailViewModel = viewModel else { return }
-        juiceNameLabel.text = viewModel.juiceModel.juice.juiceName
-        juiceDescriptionLabel.text = viewModel.juiceModel.juice.juiceDescription
-        if let image: CoreImage = viewModel.juiceModel.avatar, let data: Data = image.imageData {
-            juiceImageView.image = UIImage(data: data)
+        juiceNameLabel.text = viewModel.juiceName
+        juiceDescriptionLabel.text = viewModel.juiceDescription
+        if let image: Data = viewModel.photo {
+            juiceImageView.image = UIImage(data: image)
         } else {
             juiceImageView.image = #imageLiteral(resourceName: "img_no_image")
         }

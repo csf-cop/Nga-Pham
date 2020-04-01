@@ -11,14 +11,31 @@ import Foundation
 struct JuiceModel: Codable {
     var id: String = ""
     var externalId: String = ""
-    var juiceDescription: String
-    var juiceMorePhotos: String
-    var juiceName: String
-    var juicePhotoId: String
+    var juiceDescription: String = ""
+    var juiceMorePhotos: String = ""
+    var juiceName: String = ""
+    var juicePhotoId: String = ""
     var lastUpdate: Date?
     var dateCreate: Date?
     var unitId: String?
     var isDelete: Bool = false
+
+    init() { }
+
+    init(id: String = "", externalId: String = "", juiceDescription: String = "",
+         juiceMorePhotos: String = "", juiceName: String = "", juicePhotoId: String = "",
+         lastUpdate: Date?, dateCreate: Date? = nil, unitId: String? = nil, isDelete: Bool = false) {
+        self.id = id
+        self.externalId = externalId
+        self.juiceDescription = juiceDescription
+        self.juiceMorePhotos = juiceMorePhotos
+        self.juiceName = juiceName
+        self.juicePhotoId = juicePhotoId
+        self.lastUpdate = lastUpdate
+        self.dateCreate = dateCreate
+        self.unitId = unitId
+        self.isDelete = isDelete
+    }
 
     init(from decoder: Decoder) throws {
         id = try decoder.decodeIfPresent("id").unwrapped(or: "")
