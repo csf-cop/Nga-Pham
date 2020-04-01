@@ -301,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				31DD4D14241FA7D900E8667F /* Assets.xcassets */,
+				31DD4D1C241FA7D900E8667F /* Info.plist */,
+				31DD4D0F241FA7D800E8667F /* Nga_Pham.xcdatamodeld */,
 				310B695D243443FF003A662B /* OrderInfo.json */,
 			);
 			path = Resource;
@@ -502,8 +504,6 @@
 		31DD4D0A241FA7D800E8667F /* Nga Pham */ = {
 			isa = PBXGroup;
 			children = (
-				31DD4D1C241FA7D900E8667F /* Info.plist */,
-				31DD4D0F241FA7D800E8667F /* Nga_Pham.xcdatamodeld */,
 				31DD4D16241FA7D900E8667F /* Preview Content */,
 				310B695C243443BE003A662B /* Resource */,
 				31DD4D2C241FB7B500E8667F /* Source */,
@@ -1071,7 +1071,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Nga Pham/Preview Content\"";
 				DEVELOPMENT_TEAM = 7RHKP4B4R5;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Nga Pham/Info.plist";
+				INFOPLIST_FILE = "Nga Pham/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1093,7 +1093,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Nga Pham/Preview Content\"";
 				DEVELOPMENT_TEAM = 7RHKP4B4R5;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Nga Pham/Info.plist";
+				INFOPLIST_FILE = "Nga Pham/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
