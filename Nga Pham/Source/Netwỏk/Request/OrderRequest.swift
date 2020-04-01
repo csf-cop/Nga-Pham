@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 struct FetchOrderRequest: APIRequestRepresentableOriginal {
-    typealias CodableType = OrderModel
+    typealias CodableType = [OrderModel]
     static var method: Alamofire.HTTPMethod = .post
     static var endpoint: Api.Endpoint = .getOrders
     static var isEnableLog: Bool = true

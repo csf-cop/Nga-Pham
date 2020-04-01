@@ -13,7 +13,7 @@ import CoreData
 final class ContactDetailViewModel: BaseViewModel {
     var contactDetail: ContactModel
     var isHaveImage: Bool {
-        return contactDetail.contact.avatarId != nil && contactDetail.contact.avatarId?.isEmpty == false
+        return contactDetail.contact.avatarId != nil
     }
 
     init(model: ContactModel) {

@@ -94,7 +94,7 @@ extension AddJuiceViewModel {
             juice.juicePhotoId = nextPhotoId
         }
         if !photosId.isEmpty {
-            juice.juiceMorePhotos = try? JSONSerialization.data(withJSONObject: photosId, options: [])
+            juice.juiceMorePhotos = photosId.joined(separator: ",")
         }
         juice.save(success: {
             completion(true)

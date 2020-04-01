@@ -15,7 +15,7 @@ import OHHTTPStubs
 final class OrderProvider {
 
     @discardableResult
-    func fetchOrders(isUseStub: Bool = false, callback: @escaping (Result<OrderModel>) -> Void) -> DataRequest? {
+    func fetchOrders(isUseStub: Bool = false, callback: @escaping (Result<[OrderModel]>) -> Void) -> DataRequest? {
         #if os(iOS)
         if isUseStub {
             stub(condition: isHost(Environment.host) && isPath(FetchOrderRequest.endpoint.string)) { _ in
