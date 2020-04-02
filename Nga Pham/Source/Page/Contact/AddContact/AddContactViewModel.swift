@@ -48,19 +48,17 @@ extension AddContactViewModel {
     func addContact(name: String, address: String, phone: String, note: String, completion: @escaping Completed) {
         guard let context: NSManagedObjectContext = self.context else { return }
         let imageId: String = App.getNextImageKey(type: .image)
-        let avatar: CoreImage = CoreImage(context: context)
-        let contact: CoreContact = CoreContact(context: context)
         
         if !uploadableImages.isEmpty {
-            avatar.setValue(imageId, forKey: "id")
+            let avatar: CoreImage = CoreImage(context: context)
+            avatar.id = imageId
             let picture: UIImage = uploadableImages[0]
-            avatar.setValue(picture.toData(), forKey: "imageData")
-            avatar.setValue(picture.sizeInMB, forKey: "imageFileSize")
-            avatar.setValue(Date().string(withFormat: FormatType.fullTimeSecond), forKey: "imageName")
-            avatar.setValue(App.ImageTypeFor.contact.value, forKey: "imageTypeFor")
-            avatar.setValue(Date(), forKey: "imageDateCreate")
+            avatar.imageData = picture.toData()
+            avatar.imageFileSize = picture.sizeInMB
+            avatar.imageName = Date().string(withFormat: FormatType.fullTimeSecond)
+            avatar.imageTypeFor = App.ImageTypeFor.contact.value
+            avatar.imageDateCreate = Date()
             avatar.save(success: {
-                contact.avatarId = avatar.id
                 completion(true)
             }) { (err) in
                 self.handleErrorMessage?(err)
@@ -68,12 +66,16 @@ extension AddContactViewModel {
                 return
             }
         }
-        contact.setValue(App.getNextImageKey(type: .contact), forKey: "id")
-        contact.setValue(name, forKey: "fullName")
-        contact.setValue(phone, forKey: "phone")
-        contact.setValue(address, forKey: "addressPrimary")
-        contact.setValue(address, forKey: "addressOther")
-        contact.setValue(note, forKey: "noteInfo")
+
+        let contact: CoreContact = CoreContact(context: context)
+        contact.id =  App.getNextImageKey(type: .contact)
+        contact.avatarId = imageId
+        contact.fullName = name
+        contact.phone = phone
+        contact.addressPrimary = address
+        contact.addressOther = address
+        contact.noteInfo = note
+        contact.isDelete = false
 
         contact.save(success: {
             completion(true)

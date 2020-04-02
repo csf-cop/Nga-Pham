@@ -22,12 +22,12 @@ extension HomeViewModel {
 
     func modelForCell(at: IndexPath) -> JuiceCollectionViewModel {
         guard let juice: JuiceModel = juices[safe: at.row] else { return JuiceCollectionViewModel() }
-        return JuiceCollectionViewModel(id: juice.id, description: juice.juiceDescription, image: nil)
+        return JuiceCollectionViewModel(id: juice.id, description: juice.juiceDescription, image: juice.juiceImage)
     }
 
     func modelCellDetail(at: IndexPath) -> JuiceDetailViewModel {
         guard let juice: JuiceModel = juices[safe: at.row] else { return JuiceDetailViewModel() }
-        return JuiceDetailViewModel(id: juice.id, name: juice.juiceName, description: juice.juiceDescription, image: nil)
+        return JuiceDetailViewModel(id: juice.id, name: juice.juiceName, description: juice.juiceDescription, image: juice.juiceImage)
     }
 }
 
@@ -54,9 +54,10 @@ extension HomeViewModel {
             guard let photos: [CoreImage] = photos as? [CoreImage] else {
                 return
             }
-            data.forEach { contact in
-                let image: CoreImage? = photos.first(where: {$0.id.elementsEqual(contact.juicePhotoId.unwrapped(or: ""))})
-                let model: JuiceModel = JuiceModel()
+            data.forEach { juice in
+                let image: CoreImage? = photos.first(where: {$0.id.elementsEqual(juice.juicePhotoId.unwrapped(or: ""))})
+                var model: JuiceModel = JuiceModel(core: juice)
+                model.juiceImage = image?.imageData
                 self.juices.append(model)
             }
         }) { (err) in

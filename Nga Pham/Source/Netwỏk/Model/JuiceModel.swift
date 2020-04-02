@@ -12,9 +12,10 @@ struct JuiceModel: Codable {
     var id: String = ""
     var externalId: String = ""
     var juiceDescription: String = ""
-    var juiceMorePhotos: String = ""
     var juiceName: String = ""
     var juicePhotoId: String = ""
+    var juiceImage: Data?
+    var juiceMorePhotos: String = ""
     var lastUpdate: Date?
     var dateCreate: Date?
     var unitId: String?
@@ -22,19 +23,17 @@ struct JuiceModel: Codable {
 
     init() { }
 
-    init(id: String = "", externalId: String = "", juiceDescription: String = "",
-         juiceMorePhotos: String = "", juiceName: String = "", juicePhotoId: String = "",
-         lastUpdate: Date?, dateCreate: Date? = nil, unitId: String? = nil, isDelete: Bool = false) {
-        self.id = id
-        self.externalId = externalId
-        self.juiceDescription = juiceDescription
-        self.juiceMorePhotos = juiceMorePhotos
-        self.juiceName = juiceName
-        self.juicePhotoId = juicePhotoId
-        self.lastUpdate = lastUpdate
-        self.dateCreate = dateCreate
-        self.unitId = unitId
-        self.isDelete = isDelete
+    init(core: CoreJuice) {
+        id = core.id
+        externalId = core.externalId.unwrapped(or: "")
+        juiceDescription = core.juiceDescription.unwrapped(or: "")
+        juiceMorePhotos = core.juiceMorePhotos.unwrapped(or: "")
+        juiceName = core.juiceName
+        juicePhotoId = core.juicePhotoId.unwrapped(or: "")
+        lastUpdate = core.lastUpdate
+        dateCreate = core.dateCreate
+        unitId = core.unitId
+        isDelete = core.isDelete
     }
 
     init(from decoder: Decoder) throws {

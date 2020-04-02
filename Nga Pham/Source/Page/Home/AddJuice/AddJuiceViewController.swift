@@ -41,7 +41,7 @@ final class AddJuiceViewController: UIViewController {
         let unit: String = unitMersurePicker.text.unwrapped(or: "")
         viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
             if sussess {
-                self.dismiss(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }

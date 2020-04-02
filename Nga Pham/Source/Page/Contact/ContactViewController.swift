@@ -24,10 +24,10 @@ final class ContactViewController: ViewController {
         addNewImageView.addGestureRecognizer(gesture)
 
         // MARK: Observer contact changing.
-        notificationCenter.addObserver(self,
-                                       selector: #selector(reloadContacts),
-                                       name: Notification.Name.ReloadContacts,
-                                       object: nil)
+//        notificationCenter.addObserver(self,
+//                                       selector: #selector(reloadContacts),
+//                                       name: Notification.Name.ReloadContacts,
+//                                       object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

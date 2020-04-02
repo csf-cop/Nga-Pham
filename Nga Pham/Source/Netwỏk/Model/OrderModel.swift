@@ -20,6 +20,17 @@ struct OrderModel: Codable {
 
     init() { }
 
+    init(core: CoreOrder) {
+        id = core.id
+        externalId = core.externalId.unwrapped(or: "")
+        contactAddress = core.contactAddress.unwrapped(or: "")
+        contactName = core.contactName.unwrapped(or: "")
+        juiceName = core.juiceName.unwrapped(or: "")
+        juiceType = core.juiceType.unwrapped(or: "")
+        orderNote = core.orderNote.unwrapped(or: "")
+        phone = core.phone.unwrapped(or: "")
+    }
+
     init(from decoder: Decoder) throws {
         id = try decoder.decodeIfPresent("id").unwrapped(or: "")
         externalId = try decoder.decodeIfPresent("ext_id").unwrapped(or: "")

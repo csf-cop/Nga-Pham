@@ -28,8 +28,8 @@ extension UIImage {
         }
     }
     
-    var sizeInMB: Double {
-        return Double(sizeInBytes) / 1_000_000
+    var sizeInMB: Float {
+        return Float(sizeInBytes) / 1_000_000
     }
 
     private static func image(fromFile name: String) -> UIImage {

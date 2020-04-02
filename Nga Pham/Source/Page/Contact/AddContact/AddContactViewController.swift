@@ -43,10 +43,14 @@ final class AddContactViewController: ViewController {
         let note: String = noteTextView.text
 
         guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
-        viewModel.addContact(name: name, address: address, phone: phone, note: note) { _ in 
-            notificationCenter.post(name: .ReloadContacts, object: nil)
+        showIndicator()
+        viewModel.addContact(name: name, address: address, phone: phone, note: note) { [] isSuccess in
+            self.hideIndicator()
+            if isSuccess {
+//                notificationCenter.post(name: .ReloadContacts, object: nil)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
-        self.dismiss(animated: true)
     }
 
     override func leftButtonTouchUpInside() {

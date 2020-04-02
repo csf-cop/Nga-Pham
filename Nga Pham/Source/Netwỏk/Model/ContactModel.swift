@@ -21,18 +21,17 @@ struct ContactModel: Codable {
     var isDelete: Bool = false
 
     init() { }
-    
-    init(id: String = "", externalId: String = "", fullName: String = "", avatarId: String = "", image: Data? = nil,
-         addressMap: String = "", address: String = "", phone: String = "", noteInfo: String = "") {
-        self.id = id
-        self.externalId = externalId
-        self.fullName = fullName
-        self.avatarId = avatarId
-        self.image = image
-        self.addressMap = addressMap
-        self.address = address
-        self.phone = phone
-        self.noteInfo = noteInfo
+
+    init(core: CoreContact) {
+        id = core.id
+        externalId = core.externalId.unwrapped(or: "")
+        fullName = core.fullName
+        avatarId = core.avatarId.unwrapped(or: "")
+        addressMap = core.addressMap.unwrapped(or: "")
+        address = core.addressPrimary.unwrapped(or: "")
+        phone = core.phone.unwrapped(or: "")
+        noteInfo = core.noteInfo.unwrapped(or: "")
+        isDelete = core.isDelete
     }
 
     init(from decoder: Decoder) throws {

@@ -11,7 +11,8 @@ import Foundation
 struct ImageModel: Codable {
     var id: String = ""
     var externalId: String = ""
-    var imageData: String = ""
+    var imageUrl: String = ""
+    var imageData: Data?
     var imageDateCreate: Date?
     var imageFileSize: Float = 0
     var imageIndex: Int = 0
@@ -19,12 +20,26 @@ struct ImageModel: Codable {
     var imageTypeFor: Int = 0
     var isDelete: Bool = false
 
+    init() { }
+
+    init(core: CoreImage) {
+        self.id = core.id
+        self.externalId = core.externalId.unwrapped(or: "")
+        self.imageData = core.imageData
+        self.imageDateCreate = core.imageDateCreate
+        self.imageFileSize = core.imageFileSize
+        self.imageIndex = Int(core.imageIndex)
+        self.imageName = core.imageName.unwrapped(or: "")
+        self.imageTypeFor = Int(core.imageTypeFor)
+        self.isDelete = core.isDelete
+    }
+    
     init(from decoder: Decoder) throws {
         id = try decoder.decodeIfPresent("id").unwrapped(or: "")
         externalId = try decoder.decodeIfPresent("external_id").unwrapped(or: "")
-        imageData = try decoder.decodeIfPresent("full_name").unwrapped(or: "")
-        imageDateCreate = try? decoder.decodeIfPresent("avatar_id")
-        imageFileSize = try decoder.decodeIfPresent("image_file_size").unwrapped(or: 0)
+        imageUrl = try decoder.decodeIfPresent("image_url").unwrapped(or: "")
+        imageDateCreate = try? decoder.decodeIfPresent("date_create")
+        imageFileSize = try decoder.decodeIfPresent("file_size").unwrapped(or: 0)
         imageIndex = try decoder.decodeIfPresent("image_index").unwrapped(or: 0)
         imageName = try decoder.decodeIfPresent("image_name").unwrapped(or: "")
         imageTypeFor = try decoder.decodeIfPresent("image_type_for").unwrapped(or: 0)
