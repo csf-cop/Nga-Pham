@@ -1,5 +1,5 @@
 //
-//  AddContactViewController.swift
+//  ModifyContactViewController.swift
 //  Nga Pham
 //
 //  Created by Tuan Dang Q. on 3/19/20.
@@ -10,7 +10,7 @@ import UIKit
 import TLPhotoPicker
 import Photos
 
-final class AddContactViewController: ViewController {
+final class ModifyContactViewController: ViewController {
 
     @IBOutlet private weak var addContactButton: UIButton!
     @IBOutlet private weak var fullNameTextField: UITextField!
@@ -18,36 +18,46 @@ final class AddContactViewController: ViewController {
     @IBOutlet private weak var addressTextField: UITextField!
     @IBOutlet private weak var noteTextView: UITextView!
     @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var mofifyActionView: UIView!
     
     private lazy var imagePicker: UIImagePickerController = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideBackButtonText()
 
         // Do any additional setup after loading the view.
         title = "Thêm liên lạc"
         configUI()
         let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
         avatarImageView.addGestureRecognizer(gesture)
-        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+        guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
         viewModel.handleErrorMessage = { [weak self] error in
             self?.showError(error)
         }
     }
 
-    @IBAction func addContactTouchUpInside(_ sender: UIButton) {
+    @IBAction func modifyContactTouchUpInside(_ sender: UIButton) {
         let name: String = fullNameTextField.text.unwrapped(or: "")
         let address: String = addressTextField.text.unwrapped(or: "")
         let phone: String = phoneTextField.text.unwrapped(or: "")
         let note: String = noteTextView.text
 
-        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+        guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
         showIndicator()
-        viewModel.addContact(name: name, address: address, phone: phone, note: note) { [] isSuccess in
+        viewModel.modifyContact(name: name, address: address, phone: phone, note: note) { [] isSuccess in
             self.hideIndicator()
             if isSuccess {
-//                notificationCenter.post(name: .ReloadContacts, object: nil)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+    }
+
+    @IBAction func deleteContactTouchUpInside(_ sender: UIButton) {
+        guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
+        showIndicator()
+        viewModel.deleteContact { [] isSuccess in
+            self.hideIndicator()
+            if isSuccess {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
@@ -58,12 +68,28 @@ final class AddContactViewController: ViewController {
     }
 }
 
-extension AddContactViewController {
+extension ModifyContactViewController {
     private func configUI() {
         phoneTextField.keyboardType = .asciiCapableNumberPad
         fullNameTextField.delegate = self
         phoneTextField.delegate = self
         addressTextField.delegate = self
+
+        guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
+        if viewModel.mode == .add {
+            mofifyActionView.isHidden = true
+        } else {
+            addContactButton.isHidden = true
+            fullNameTextField.text = viewModel.contact.fullName
+            phoneTextField.text = viewModel.contact.phone
+            addressTextField.text = viewModel.contact.address
+            noteTextView.text = viewModel.contact.noteInfo
+            if let imageData: Data = viewModel.contact.image {
+                avatarImageView.image = UIImage(data: imageData)
+            } else {
+                avatarImageView.image = #imageLiteral(resourceName: "img_no_image")
+            }
+        }
     }
 
     @objc func pickPhoto(sender: UITapGestureRecognizer) {
@@ -84,7 +110,7 @@ extension AddContactViewController {
         switch photos {
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization ({ [weak self] status in
-                guard let this: AddContactViewController = self else { return }
+                guard let this: ModifyContactViewController = self else { return }
                 if status == .authorized {
                     this.presentLibraryPhoto()
                 }
@@ -127,7 +153,7 @@ extension AddContactViewController {
     private func accessToCamera() {
         if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined {
             AVCaptureDevice.requestAccess(for: .video) { [weak self] cameraGranted -> Void in
-                guard let this: AddContactViewController = self else { return }
+                guard let this: ModifyContactViewController = self else { return }
                 if cameraGranted {
                     this.presentCamera()
                 }
@@ -157,7 +183,7 @@ extension AddContactViewController {
     }
 }
 
-extension AddContactViewController {
+extension ModifyContactViewController {
     struct CameraConfig {
         static let alertButtonTitles: [String] = [App.Strings.cancel, App.Strings.setting]
         static let typeButtonTitles: [String] = [App.Strings.library, App.Strings.camera]
@@ -171,14 +197,14 @@ extension AddContactViewController {
 }
 
 // MARK: TLPhotosPickerViewControllerDelegate
-extension AddContactViewController: TLPhotosPickerViewControllerDelegate {
+extension ModifyContactViewController: TLPhotosPickerViewControllerDelegate {
     func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
-        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+        guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
         viewModel.getSelectedImage(selectedAssets: withTLPHAssets)
     }
 
     func dismissComplete() {
-        guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+        guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
         if !viewModel.images.isEmpty {
             avatarImageView.image = viewModel.images[0]
         }
@@ -186,10 +212,10 @@ extension AddContactViewController: TLPhotosPickerViewControllerDelegate {
 }
 
 // MARK: - UINavigationControllerDelegate, UIImagePickerControllerDelegate
-extension AddContactViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension ModifyContactViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image: UIImage = info[.originalImage] as? UIImage {
-            guard let viewModel: AddContactViewModel = viewModel as? AddContactViewModel else { return }
+            guard let viewModel: ModifyContactViewModel = viewModel as? ModifyContactViewModel else { return }
             viewModel.takePhoto(image: image)
         } else {
             navigationController?.popViewController(animated: false)
@@ -201,7 +227,7 @@ extension AddContactViewController: UINavigationControllerDelegate, UIImagePicke
     }
 }
 
-extension AddContactViewController: UITextFieldDelegate {
+extension ModifyContactViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

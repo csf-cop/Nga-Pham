@@ -16,6 +16,7 @@ struct JuiceModel: Codable {
     var juicePhotoId: String = ""
     var juiceImage: Data?
     var juiceMorePhotos: String = ""
+    var juicePhotos: [Data?] = []
     var lastUpdate: Date?
     var dateCreate: Date?
     var unitId: String?

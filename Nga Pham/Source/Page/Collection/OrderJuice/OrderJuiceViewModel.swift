@@ -15,10 +15,12 @@ final class OrderJuiceViewModel: BaseViewModel {
     var juicesName: [[String]] {
         return juiceTypes
     }
-    private var orderJuice: CoreOrder
+    private var orderJuice: OrderModel
+    var mode: App.Mode
 
-    init(order: CoreOrder = CoreOrder()) {
+    init(order: OrderModel = OrderModel(), mode: App.Mode = .detail) {
         self.orderJuice = order
+        self.mode = mode
     }
 }
 
@@ -64,22 +66,28 @@ extension OrderJuiceViewModel {
     }
 
     func addOrderJuice(name: String, unit: String, withName: String?, phone: String, address: String, note: String?, isSave: Bool, completion: @escaping Completed) {
-        guard let context: NSManagedObjectContext = self.context else { return }
-        let order: CoreOrder = CoreOrder(context: context)
-        order.id = App.getNextImageKey(type: .order)
-        order.juiceName = name
-        order.juiceType = unit
-        order.contactName = withName
-        order.phone = phone
-        order.contactAddress = address
-        order.orderNote = note
+        if mode == .add {
+            guard let context: NSManagedObjectContext = self.context else { return }
+            let order: CoreOrder = CoreOrder(context: context)
+            order.id = App.getNextImageKey(type: .order)
+            order.juiceName = name
+            order.juiceType = unit
+            order.contactName = withName
+            order.phone = phone
+            order.contactAddress = address
+            order.orderNote = note
+            order.mode = 1 // Add new.
+            order.isDelete = false
 
-        order.save(success: {
-            completion(true)
-        }) { (err) in
-            self.handleErrorMessage?(err)
-            completion(false)
-            return
+            order.save(success: {
+                completion(true)
+            }) { (err) in
+                self.handleErrorMessage?(err)
+                completion(false)
+                return
+            }
+        } else if mode == .edit {
+            // MARK: Edit information.
         }
 
         // MARK: Call to API.

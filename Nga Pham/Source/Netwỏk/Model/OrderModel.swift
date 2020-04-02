@@ -25,7 +25,7 @@ struct OrderModel: Codable {
         externalId = core.externalId.unwrapped(or: "")
         contactAddress = core.contactAddress.unwrapped(or: "")
         contactName = core.contactName.unwrapped(or: "")
-        juiceName = core.juiceName.unwrapped(or: "")
+        juiceName = core.juiceName
         juiceType = core.juiceType.unwrapped(or: "")
         orderNote = core.orderNote.unwrapped(or: "")
         phone = core.phone.unwrapped(or: "")

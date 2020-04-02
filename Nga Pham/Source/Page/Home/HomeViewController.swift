@@ -30,14 +30,14 @@ final class HomeViewController: ViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadContactData()
+        loadCollectionViewData()
     }
 }
 
 extension HomeViewController {
     @objc private func moveToAddJuice(sender: UITapGestureRecognizer) {
-        let addJuiceVC: AddJuiceViewController = AddJuiceViewController()
-        addJuiceVC.viewModel = AddJuiceViewModel()
+        let addJuiceVC: ModifyJuiceViewController = ModifyJuiceViewController()
+        addJuiceVC.viewModel = ModifyJuiceViewModel()
         navigationController?.pushViewController(addJuiceVC, animated: true)
     }
 
@@ -48,14 +48,13 @@ extension HomeViewController {
         collectionView.delegate = self
     }
 
-    private func loadContactData() {
+    private func loadCollectionViewData() {
         guard let viewModel: HomeViewModel = viewModel as? HomeViewModel else { return }
-        viewModel.loadContactsData { [] isSuccess in
+        viewModel.loadJuicesData { [] isSuccess in
             if isSuccess {
-                self.navigationController?.popViewController(animated: true)
+                self.collectionView.reloadData()
             }
         }
-        collectionView.reloadData()
     }
 }
 
@@ -76,7 +75,7 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let viewModel: HomeViewModel = viewModel as? HomeViewModel else { return }
-        let juiceDetail: JuiceDetailViewController = JuiceDetailViewController()
+        let juiceDetail: ModifyJuiceViewController = ModifyJuiceViewController()
         juiceDetail.viewModel = viewModel.modelCellDetail(at: indexPath)
         navigationController?.pushViewController(juiceDetail, animated: true)
     }

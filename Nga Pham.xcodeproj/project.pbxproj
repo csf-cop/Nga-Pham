@@ -22,22 +22,19 @@
 		310B695E243443FF003A662B /* OrderInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 310B695D243443FF003A662B /* OrderInfo.json */; };
 		310B696724348DD5003A662B /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B696624348DD5003A662B /* ImageModel.swift */; };
 		310B6969243496BF003A662B /* UnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B6968243496BF003A662B /* UnitModel.swift */; };
+		310B697E2435BC01003A662B /* ModifyJuiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B697D2435BC01003A662B /* ModifyJuiceViewModel.swift */; };
 		310C8EAB24287C8C0021C7B0 /* Pods_Nga_Pham.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDDF499C0BE4B8653E4AE1B /* Pods_Nga_Pham.framework */; };
 		310C8EAC24287C8D0021C7B0 /* Pods_Nga_Pham.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDDF499C0BE4B8653E4AE1B /* Pods_Nga_Pham.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3111A4152423BF2F00906219 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4132423BF2F00906219 /* ContactViewController.swift */; };
 		3111A4162423BF2F00906219 /* ContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A4142423BF2F00906219 /* ContactViewController.xib */; };
 		3111A4182423C06A00906219 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4172423C06A00906219 /* ContactViewModel.swift */; };
 		3111A41A2423C15C00906219 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4192423C15C00906219 /* SettingViewModel.swift */; };
-		3111A4262423CA2200906219 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4242423CA2200906219 /* AddContactViewController.swift */; };
-		3111A4272423CA2200906219 /* AddContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A4252423CA2200906219 /* AddContactViewController.xib */; };
-		3111A4292423CA3400906219 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4282423CA3400906219 /* AddContactViewModel.swift */; };
+		3111A4262423CA2200906219 /* ModifyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4242423CA2200906219 /* ModifyContactViewController.swift */; };
+		3111A4272423CA2200906219 /* ModifyContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A4252423CA2200906219 /* ModifyContactViewController.xib */; };
+		3111A4292423CA3400906219 /* ModifyContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4282423CA3400906219 /* ModifyContactViewModel.swift */; };
 		3111A42C2423CF7D00906219 /* ContactCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A42B2423CF7D00906219 /* ContactCellModel.swift */; };
-		3111A4302423D1D100906219 /* AddJuiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A42E2423D1D100906219 /* AddJuiceViewController.swift */; };
-		3111A4312423D1D100906219 /* AddJuiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A42F2423D1D100906219 /* AddJuiceViewController.xib */; };
-		3111A4332423D1DD00906219 /* AddJuiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4322423D1DD00906219 /* AddJuiceViewModel.swift */; };
-		3111A4372423D99500906219 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4352423D99500906219 /* ContactDetailViewController.swift */; };
-		3111A4382423D99500906219 /* ContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A4362423D99500906219 /* ContactDetailViewController.xib */; };
-		3111A43A2423D9A900906219 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A4392423D9A900906219 /* ContactDetailViewModel.swift */; };
+		3111A4302423D1D100906219 /* ModifyJuiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3111A42E2423D1D100906219 /* ModifyJuiceViewController.swift */; };
+		3111A4312423D1D100906219 /* ModifyJuiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3111A42F2423D1D100906219 /* ModifyJuiceViewController.xib */; };
 		31162D3924339CA3005A43EF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31162D3824339CA3005A43EF /* Environment.swift */; };
 		31162D3F24339EEC005A43EF /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31162D3E24339EEC005A43EF /* DictionaryExt.swift */; };
 		31162D4F2433A54E005A43EF /* APIRequestRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31162D4E2433A54E005A43EF /* APIRequestRepresentable.swift */; };
@@ -105,9 +102,6 @@
 		31DD4D4C241FC48100E8667F /* JuiceCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D4B241FC48100E8667F /* JuiceCollectionViewModel.swift */; };
 		31DD4D4F241FC49A00E8667F /* JuiceCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D4D241FC49A00E8667F /* JuiceCollectionCell.swift */; };
 		31DD4D50241FC49A00E8667F /* JuiceCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31DD4D4E241FC49A00E8667F /* JuiceCollectionCell.xib */; };
-		31DD4D54241FCDCE00E8667F /* JuiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D52241FCDCE00E8667F /* JuiceDetailViewController.swift */; };
-		31DD4D55241FCDCE00E8667F /* JuiceDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31DD4D53241FCDCE00E8667F /* JuiceDetailViewController.xib */; };
-		31DD4D57241FD94800E8667F /* JuiceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D56241FD94800E8667F /* JuiceDetailViewModel.swift */; };
 		31DD4D59241FDB5A00E8667F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D58241FDB5A00E8667F /* BaseView.swift */; };
 		31DD4D5C241FDBD900E8667F /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D5B241FDBD900E8667F /* UIViewExt.swift */; };
 		31DD4D5E241FDD8000E8667F /* UICollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31DD4D5D241FDD8000E8667F /* UICollectionViewExt.swift */; };
@@ -158,20 +152,17 @@
 		310B695D243443FF003A662B /* OrderInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OrderInfo.json; sourceTree = "<group>"; };
 		310B696624348DD5003A662B /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		310B6968243496BF003A662B /* UnitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitModel.swift; sourceTree = "<group>"; };
+		310B697D2435BC01003A662B /* ModifyJuiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyJuiceViewModel.swift; sourceTree = "<group>"; };
 		3111A4132423BF2F00906219 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		3111A4142423BF2F00906219 /* ContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewController.xib; sourceTree = "<group>"; };
 		3111A4172423C06A00906219 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		3111A4192423C15C00906219 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		3111A4242423CA2200906219 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
-		3111A4252423CA2200906219 /* AddContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddContactViewController.xib; sourceTree = "<group>"; };
-		3111A4282423CA3400906219 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
+		3111A4242423CA2200906219 /* ModifyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyContactViewController.swift; sourceTree = "<group>"; };
+		3111A4252423CA2200906219 /* ModifyContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyContactViewController.xib; sourceTree = "<group>"; };
+		3111A4282423CA3400906219 /* ModifyContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyContactViewModel.swift; sourceTree = "<group>"; };
 		3111A42B2423CF7D00906219 /* ContactCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellModel.swift; sourceTree = "<group>"; };
-		3111A42E2423D1D100906219 /* AddJuiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJuiceViewController.swift; sourceTree = "<group>"; };
-		3111A42F2423D1D100906219 /* AddJuiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddJuiceViewController.xib; sourceTree = "<group>"; };
-		3111A4322423D1DD00906219 /* AddJuiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJuiceViewModel.swift; sourceTree = "<group>"; };
-		3111A4352423D99500906219 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
-		3111A4362423D99500906219 /* ContactDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactDetailViewController.xib; sourceTree = "<group>"; };
-		3111A4392423D9A900906219 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
+		3111A42E2423D1D100906219 /* ModifyJuiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyJuiceViewController.swift; sourceTree = "<group>"; };
+		3111A42F2423D1D100906219 /* ModifyJuiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyJuiceViewController.xib; sourceTree = "<group>"; };
 		31162D3824339CA3005A43EF /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		31162D3E24339EEC005A43EF /* DictionaryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
 		31162D4E2433A54E005A43EF /* APIRequestRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestRepresentable.swift; sourceTree = "<group>"; };
@@ -241,9 +232,6 @@
 		31DD4D4B241FC48100E8667F /* JuiceCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceCollectionViewModel.swift; sourceTree = "<group>"; };
 		31DD4D4D241FC49A00E8667F /* JuiceCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceCollectionCell.swift; sourceTree = "<group>"; };
 		31DD4D4E241FC49A00E8667F /* JuiceCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JuiceCollectionCell.xib; sourceTree = "<group>"; };
-		31DD4D52241FCDCE00E8667F /* JuiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceDetailViewController.swift; sourceTree = "<group>"; };
-		31DD4D53241FCDCE00E8667F /* JuiceDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JuiceDetailViewController.xib; sourceTree = "<group>"; };
-		31DD4D56241FD94800E8667F /* JuiceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceDetailViewModel.swift; sourceTree = "<group>"; };
 		31DD4D58241FDB5A00E8667F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		31DD4D5B241FDBD900E8667F /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		31DD4D5D241FDD8000E8667F /* UICollectionViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExt.swift; sourceTree = "<group>"; };
@@ -319,8 +307,7 @@
 		3111A4122423BEFF00906219 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
-				3111A42A2423CA6100906219 /* AddContact */,
-				3111A4342423D97900906219 /* ContactDetail */,
+				3111A42A2423CA6100906219 /* ModifyContact */,
 				3111A41C2423C9D000906219 /* Cell */,
 				3111A4132423BF2F00906219 /* ContactViewController.swift */,
 				3111A4142423BF2F00906219 /* ContactViewController.xib */,
@@ -352,34 +339,24 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		3111A42A2423CA6100906219 /* AddContact */ = {
+		3111A42A2423CA6100906219 /* ModifyContact */ = {
 			isa = PBXGroup;
 			children = (
-				3111A4242423CA2200906219 /* AddContactViewController.swift */,
-				3111A4252423CA2200906219 /* AddContactViewController.xib */,
-				3111A4282423CA3400906219 /* AddContactViewModel.swift */,
+				3111A4242423CA2200906219 /* ModifyContactViewController.swift */,
+				3111A4252423CA2200906219 /* ModifyContactViewController.xib */,
+				3111A4282423CA3400906219 /* ModifyContactViewModel.swift */,
 			);
-			path = AddContact;
+			path = ModifyContact;
 			sourceTree = "<group>";
 		};
-		3111A42D2423D1C000906219 /* AddJuice */ = {
+		3111A42D2423D1C000906219 /* ModifyJuice */ = {
 			isa = PBXGroup;
 			children = (
-				3111A42E2423D1D100906219 /* AddJuiceViewController.swift */,
-				3111A42F2423D1D100906219 /* AddJuiceViewController.xib */,
-				3111A4322423D1DD00906219 /* AddJuiceViewModel.swift */,
+				3111A42E2423D1D100906219 /* ModifyJuiceViewController.swift */,
+				3111A42F2423D1D100906219 /* ModifyJuiceViewController.xib */,
+				310B697D2435BC01003A662B /* ModifyJuiceViewModel.swift */,
 			);
-			path = AddJuice;
-			sourceTree = "<group>";
-		};
-		3111A4342423D97900906219 /* ContactDetail */ = {
-			isa = PBXGroup;
-			children = (
-				3111A4352423D99500906219 /* ContactDetailViewController.swift */,
-				3111A4362423D99500906219 /* ContactDetailViewController.xib */,
-				3111A4392423D9A900906219 /* ContactDetailViewModel.swift */,
-			);
-			path = ContactDetail;
+			path = ModifyJuice;
 			sourceTree = "<group>";
 		};
 		316FAE6F24246C6F00733952 /* Network */ = {
@@ -555,8 +532,7 @@
 		31DD4D2E241FB7C800E8667F /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3111A42D2423D1C000906219 /* AddJuice */,
-				31DD4D51241FCDB200E8667F /* JuiceDetail */,
+				3111A42D2423D1C000906219 /* ModifyJuice */,
 				31DD4D46241FC3FF00E8667F /* Cell */,
 				31DD4D22241FA89F00E8667F /* HomeViewController.swift */,
 				31DD4D23241FA89F00E8667F /* HomeViewController.xib */,
@@ -608,16 +584,6 @@
 				31DD4D4B241FC48100E8667F /* JuiceCollectionViewModel.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		31DD4D51241FCDB200E8667F /* JuiceDetail */ = {
-			isa = PBXGroup;
-			children = (
-				31DD4D52241FCDCE00E8667F /* JuiceDetailViewController.swift */,
-				31DD4D53241FCDCE00E8667F /* JuiceDetailViewController.xib */,
-				31DD4D56241FD94800E8667F /* JuiceDetailViewModel.swift */,
-			);
-			path = JuiceDetail;
 			sourceTree = "<group>";
 		};
 		31DD4D5A241FDBC100E8667F /* Ext */ = {
@@ -785,21 +751,19 @@
 				316FAE942424994000733952 /* SyncDataViewController.xib in Resources */,
 				310B695E243443FF003A662B /* OrderInfo.json in Resources */,
 				3111A4162423BF2F00906219 /* ContactViewController.xib in Resources */,
-				31DD4D55241FCDCE00E8667F /* JuiceDetailViewController.xib in Resources */,
 				316FAE9B242499FB00733952 /* SoftwareInfoViewController.xib in Resources */,
 				31DD4D50241FC49A00E8667F /* JuiceCollectionCell.xib in Resources */,
 				31DD4D33241FB80B00E8667F /* MainTabbarViewController.xib in Resources */,
 				31DD4D18241FA7D900E8667F /* Preview Assets.xcassets in Resources */,
-				3111A4312423D1D100906219 /* AddJuiceViewController.xib in Resources */,
+				3111A4312423D1D100906219 /* ModifyJuiceViewController.xib in Resources */,
 				31DD4D15241FA7D900E8667F /* Assets.xcassets in Resources */,
 				310937A024207C2700732F97 /* ItemCollectionCell.xib in Resources */,
 				31DD4D63241FE72400E8667F /* OrderJuiceViewController.xib in Resources */,
 				31DD4D29241FB20C00E8667F /* SplashViewController.xib in Resources */,
 				316FAE8D2424989500733952 /* UserInformationViewController.xib in Resources */,
 				31393AC024243672007D3004 /* ContactViewCell.xib in Resources */,
-				3111A4272423CA2200906219 /* AddContactViewController.xib in Resources */,
+				3111A4272423CA2200906219 /* ModifyContactViewController.xib in Resources */,
 				31DD4D43241FB93E00E8667F /* ItemCollectionViewController.xib in Resources */,
-				3111A4382423D99500906219 /* ContactDetailViewController.xib in Resources */,
 				31DD4D25241FA89F00E8667F /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,7 +819,6 @@
 			files = (
 				31DD06FE242C968000E17C6C /* CoreImage+CoreDataClass.swift in Sources */,
 				31162D572433A5BE005A43EF /* APIRequestRepresentableExtra.swift in Sources */,
-				3111A43A2423D9A900906219 /* ContactDetailViewModel.swift in Sources */,
 				31162D612433A67E005A43EF /* DecodableExt.swift in Sources */,
 				31DD4D2B241FB59100E8667F /* Application.swift in Sources */,
 				31C2701A242EC71E004ED542 /* SecurePreference.swift in Sources */,
@@ -880,7 +843,7 @@
 				3111A42C2423CF7D00906219 /* ContactCellModel.swift in Sources */,
 				31DD4D6A241FE8EA00E8667F /* NoActionTextField.swift in Sources */,
 				31DD4D7C241FEC4600E8667F /* DateExt.swift in Sources */,
-				3111A4262423CA2200906219 /* AddContactViewController.swift in Sources */,
+				3111A4262423CA2200906219 /* ModifyContactViewController.swift in Sources */,
 				31162D632433A6DF005A43EF /* Device.swift in Sources */,
 				310937A224207D5B00732F97 /* ItemCollectionCellModel.swift in Sources */,
 				31DD4D45241FC12A00E8667F /* HomeViewModel.swift in Sources */,
@@ -902,14 +865,12 @@
 				31CA897F24262ED900D42170 /* UIImageExt.swift in Sources */,
 				3109379F24207C2700732F97 /* ItemCollectionCell.swift in Sources */,
 				31CA8956242616E100D42170 /* NSManagedObjectExt.swift in Sources */,
-				3111A4292423CA3400906219 /* AddContactViewModel.swift in Sources */,
+				3111A4292423CA3400906219 /* ModifyContactViewModel.swift in Sources */,
 				31DD4D74241FEA2100E8667F /* App.swift in Sources */,
 				31162D652433A724005A43EF /* DeviceExt.swift in Sources */,
 				31DD06FF242C968000E17C6C /* CoreImage+CoreDataProperties.swift in Sources */,
 				316FAE9A242499FB00733952 /* SoftwareInfoViewController.swift in Sources */,
 				31DD4D11241FA7D800E8667F /* Nga_Pham.xcdatamodeld in Sources */,
-				31DD4D57241FD94800E8667F /* JuiceDetailViewModel.swift in Sources */,
-				31DD4D54241FCDCE00E8667F /* JuiceDetailViewController.swift in Sources */,
 				31C2701C242EC76F004ED542 /* SaveKeys.swift in Sources */,
 				31162D4F2433A54E005A43EF /* APIRequestRepresentable.swift in Sources */,
 				31CA897C24262D6F00D42170 /* ImageDAO.swift in Sources */,
@@ -921,6 +882,7 @@
 				316FAE932424994000733952 /* SyncDataViewController.swift in Sources */,
 				316FAE832424748900733952 /* Popup.swift in Sources */,
 				3111A4182423C06A00906219 /* ContactViewModel.swift in Sources */,
+				310B697E2435BC01003A662B /* ModifyJuiceViewModel.swift in Sources */,
 				31A92EB9242F7F7B005257EC /* UITextFieldExt.swift in Sources */,
 				31DD4D5E241FDD8000E8667F /* UICollectionViewExt.swift in Sources */,
 				31DD06F8242C968000E17C6C /* CoreOrder+CoreDataClass.swift in Sources */,
@@ -934,7 +896,6 @@
 				31162D3F24339EEC005A43EF /* DictionaryExt.swift in Sources */,
 				31CC0F48242524C40082E4FB /* NotificationExt.swift in Sources */,
 				310B6969243496BF003A662B /* UnitModel.swift in Sources */,
-				3111A4372423D99500906219 /* ContactDetailViewController.swift in Sources */,
 				3111A4152423BF2F00906219 /* ContactViewController.swift in Sources */,
 				310B69592434275A003A662B /* OrderRequest.swift in Sources */,
 				31DD4D24241FA89F00E8667F /* HomeViewController.swift in Sources */,
@@ -947,8 +908,7 @@
 				31DD06FA242C968000E17C6C /* CoreContact+CoreDataClass.swift in Sources */,
 				31DD4D28241FB20C00E8667F /* SplashViewController.swift in Sources */,
 				31DD4D42241FB93E00E8667F /* ItemCollectionViewController.swift in Sources */,
-				3111A4302423D1D100906219 /* AddJuiceViewController.swift in Sources */,
-				3111A4332423D1DD00906219 /* AddJuiceViewModel.swift in Sources */,
+				3111A4302423D1D100906219 /* ModifyJuiceViewController.swift in Sources */,
 				31162D552433A5AA005A43EF /* HTTPStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

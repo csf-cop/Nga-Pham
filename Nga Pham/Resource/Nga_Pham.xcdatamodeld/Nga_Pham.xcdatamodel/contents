@@ -9,6 +9,7 @@
         <attribute name="fullName" attributeType="String" defaultValueString=""/>
         <attribute name="id" attributeType="String" minValueString="1"/>
         <attribute name="isDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="mode" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="noteInfo" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
     </entity>
@@ -22,6 +23,7 @@
         <attribute name="imageName" optional="YES" attributeType="String"/>
         <attribute name="imageTypeFor" attributeType="Integer 16" minValueString="1" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="isDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="mode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="CoreJuice" representedClassName="CoreJuice" syncable="YES">
         <attribute name="dateCreate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -33,6 +35,7 @@
         <attribute name="juiceName" attributeType="String" defaultValueString=""/>
         <attribute name="juicePhotoId" optional="YES" attributeType="String"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="unitId" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CoreOrder" representedClassName="CoreOrder" syncable="YES">
@@ -43,6 +46,7 @@
         <attribute name="isDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="juiceName" attributeType="String"/>
         <attribute name="juiceType" optional="YES" attributeType="String"/>
+        <attribute name="mode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="orderNote" optional="YES" attributeType="String"/>
         <attribute name="phone" attributeType="String"/>
     </entity>
@@ -50,14 +54,15 @@
         <attribute name="externalId" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" minValueString="1"/>
         <attribute name="isDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="mode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="unitName" attributeType="String" defaultValueString=""/>
         <attribute name="unitNote" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CoreContact" positionX="-75.78515625" positionY="-107.30859375" width="128" height="193"/>
-        <element name="CoreImage" positionX="183.45703125" positionY="118.24609375" width="128" height="178"/>
-        <element name="CoreJuice" positionX="400.76953125" positionY="-73.3515625" width="128" height="193"/>
-        <element name="CoreOrder" positionX="169.5625" positionY="-122.38671875" width="128" height="178"/>
-        <element name="CoreUnit" positionX="460.28515625" positionY="139.02734375" width="128" height="118"/>
+        <element name="CoreContact" positionX="-75.78515625" positionY="-107.30859375" width="128" height="208"/>
+        <element name="CoreImage" positionX="183.45703125" positionY="118.24609375" width="128" height="193"/>
+        <element name="CoreJuice" positionX="400.76953125" positionY="-73.3515625" width="128" height="208"/>
+        <element name="CoreOrder" positionX="169.5625" positionY="-122.38671875" width="128" height="193"/>
+        <element name="CoreUnit" positionX="460.28515625" positionY="139.02734375" width="128" height="133"/>
     </elements>
 </model>

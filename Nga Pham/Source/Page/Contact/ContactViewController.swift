@@ -32,14 +32,14 @@ final class ContactViewController: ViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadContactData()
+        loadCollectionViewData()
     }
 }
 
 extension ContactViewController {
     @objc private func addContact(sender: UITapGestureRecognizer) {
-        let contactVC: AddContactViewController = AddContactViewController()
-        contactVC.viewModel = AddContactViewModel()
+        let contactVC: ModifyContactViewController = ModifyContactViewController()
+        contactVC.viewModel = ModifyContactViewModel()
         navigationController?.pushViewController(contactVC, animated: true)
     }
 
@@ -49,14 +49,13 @@ extension ContactViewController {
         collectionView.delegate = self
     }
 
-    private func loadContactData() {
+    private func loadCollectionViewData() {
         guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return }
         viewModel.loadContactsData { [] isSuccess in
             if isSuccess {
-                self.navigationController?.popViewController(animated: true)
+                self.collectionView.reloadData()
             }
         }
-        collectionView.reloadData()
     }
 
     @objc private func reloadContacts(_ notification: Notification) {
@@ -70,7 +69,7 @@ extension ContactViewController {
 //            }
 //        }
         print("Call back load Data item.")
-        loadContactData()
+        loadCollectionViewData()
     }
 }
 
@@ -91,7 +90,7 @@ extension ContactViewController: UICollectionViewDataSource {
 extension ContactViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let viewModel: ContactViewModel = viewModel as? ContactViewModel else { return }
-        let contactDetail: ContactDetailViewController = ContactDetailViewController()
+        let contactDetail: ModifyContactViewController = ModifyContactViewController()
         contactDetail.viewModel = viewModel.contactModel(at: indexPath)
         navigationController?.pushViewController(contactDetail, animated: true)
     }

@@ -23,9 +23,9 @@ extension ContactViewModel {
         return ContactCellModel(id: contact.avatarId, name: contact.fullName, image: contact.image)
     }
 
-    func contactModel(at: IndexPath) -> ContactDetailViewModel {
-        guard let model: ContactModel = contactsModel[safe: at.row] else { return ContactDetailViewModel() }
-        return ContactDetailViewModel(id: model.id, avatar: model.image, fullName: model.fullName, phone: model.phone)
+    func contactModel(at: IndexPath) -> ModifyContactViewModel {
+        guard let model: ContactModel = contactsModel[safe: at.row] else { return ModifyContactViewModel() }
+        return ModifyContactViewModel(model: model, mode: .edit)
     }
 
     func loadContactsData(completion: @escaping Completed) {
