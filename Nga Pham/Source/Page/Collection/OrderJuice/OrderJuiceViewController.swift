@@ -22,12 +22,15 @@ final class OrderJuiceViewController: ViewController {
     @IBOutlet private weak var addressTextField: UITextField!
     @IBOutlet private weak var orderNoteTextView: UITextView!
     @IBOutlet private weak var saveToNextTimesSwitch: UISwitch!
+    @IBOutlet private weak var orderButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         title = "Đặt trái cây"
+
+        configUI()
         loadData()
         guard let viewModel: OrderJuiceViewModel = viewModel as? OrderJuiceViewModel else { return }
         viewModel.handleErrorMessage = { [weak self] error in
@@ -50,6 +53,15 @@ final class OrderJuiceViewController: ViewController {
 }
 
 extension OrderJuiceViewController {
+    private func configUI() {
+        guard let viewModel: OrderJuiceViewModel = viewModel as? OrderJuiceViewModel else { return }
+        if viewModel.mode == .detail || viewModel.mode == .edit {
+            orderButton.setTitle("Thay đổi thông tin", for: .normal)
+        } else {
+            orderButton.setTitle("Đặt hàng", for: .normal)
+        }
+    }
+
     private func loadData() {
         guard let viewModel: OrderJuiceViewModel = viewModel as? OrderJuiceViewModel else { return }
         showIndicator()

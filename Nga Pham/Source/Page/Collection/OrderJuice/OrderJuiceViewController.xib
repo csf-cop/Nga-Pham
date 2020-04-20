@@ -16,6 +16,7 @@
                 <outlet property="juiceTypePickup" destination="0Zh-6g-mbv" id="TTM-vd-Scy"/>
                 <outlet property="juiceUnitLabel" destination="wdF-dj-PKV" id="blS-Ko-tYa"/>
                 <outlet property="juiceUnitPickup" destination="6bf-c8-t6w" id="h2k-kE-D4n"/>
+                <outlet property="orderButton" destination="JMW-4Q-a5E" id="sm5-JC-z76"/>
                 <outlet property="orderNameTextField" destination="Bwe-ST-Vy5" id="qkJ-tA-0wo"/>
                 <outlet property="orderNoteTextView" destination="ams-WF-0bF" id="jC7-x0-2ZI"/>
                 <outlet property="phoneTextField" destination="roV-gb-3Tt" id="dVE-bW-rk2"/>

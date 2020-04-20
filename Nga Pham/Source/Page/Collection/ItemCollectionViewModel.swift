@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 final class ItemCollectionViewModel: BaseViewModel {
-    private var orderModel: [CoreOrder] = []
+    private var orderModel: [OrderModel] = []
 }
 
 extension ItemCollectionViewModel {
@@ -19,13 +19,13 @@ extension ItemCollectionViewModel {
     }
 
     func viewModelForItemCollectionCell(at: IndexPath) -> ItemCollectionCellModel {
-        let order: CoreOrder = orderModel[safe: at.row].unwrapped(or: CoreOrder())
-        return ItemCollectionCellModel(model: order)
+        let order: OrderModel = orderModel[safe: at.row].unwrapped(or: OrderModel())
+        return ItemCollectionCellModel(description: order.contactAddress)
     }
 
     func modelCellDetail(at: IndexPath) -> OrderJuiceViewModel {
-        let order: CoreOrder = orderModel[safe: at.row].unwrapped(or: CoreOrder())
-        return OrderJuiceViewModel(order: order)
+        let model: OrderModel = orderModel[safe: at.row].unwrapped(or: OrderModel())
+        return OrderJuiceViewModel(order: model, mode: .detail)
     }
 
     func loadOrdersData(completion: @escaping Completed) {
@@ -33,7 +33,9 @@ extension ItemCollectionViewModel {
             guard let result: [CoreOrder] = result as? [CoreOrder] else {
                 return
             }
-            self.orderModel = result
+            result.forEach { order in
+                self.orderModel.append(OrderModel(core: order))
+            }
             completion(true)
         }) { (err) in
             self.handleErrorMessage?(err)

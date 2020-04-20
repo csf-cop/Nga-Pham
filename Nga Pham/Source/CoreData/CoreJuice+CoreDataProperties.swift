@@ -2,7 +2,7 @@
 //  CoreJuice+CoreDataProperties.swift
 //  Nga Pham
 //
-//  Created by Tuan Dang Q. on 3/27/20.
+//  Created by Tuan Dang Q. on 4/2/20.
 //  Copyright © 2020 Tuan Dang Q. All rights reserved.
 //
 //
@@ -18,13 +18,15 @@ extension CoreJuice {
     }
 
     @NSManaged public var dateCreate: Date?
+    @NSManaged public var externalId: String?
     @NSManaged public var id: String
     @NSManaged public var isDelete: Bool
     @NSManaged public var juiceDescription: String?
-    @NSManaged public var juiceMorePhotos: Data?
+    @NSManaged public var juiceMorePhotos: String?
     @NSManaged public var juiceName: String
     @NSManaged public var juicePhotoId: String?
     @NSManaged public var lastUpdate: Date?
     @NSManaged public var unitId: String?
+    @NSManaged public var mode: Int16
 
 }

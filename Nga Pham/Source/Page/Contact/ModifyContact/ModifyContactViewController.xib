@@ -8,12 +8,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddContactViewController" customModule="Nga_Pham" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModifyContactViewController" customModule="Nga_Pham" customModuleProvider="target">
             <connections>
                 <outlet property="addContactButton" destination="hpU-cM-Uv8" id="BLh-uM-QhC"/>
                 <outlet property="addressTextField" destination="Lre-yQ-CbQ" id="SMm-Ui-Fwg"/>
                 <outlet property="avatarImageView" destination="WjA-hx-NMn" id="6Oo-8X-oQA"/>
                 <outlet property="fullNameTextField" destination="4dc-IX-qF3" id="MM6-jA-Jgl"/>
+                <outlet property="mofifyActionView" destination="V0V-gY-Dvm" id="mX6-mR-Vik"/>
                 <outlet property="noteTextView" destination="I3w-gy-gAO" id="iKm-Fe-owd"/>
                 <outlet property="phoneTextField" destination="AK1-PU-BwC" id="Riy-Kw-JFM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-mN-48n">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="514"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_no_image" translatesAutoresizingMaskIntoConstraints="NO" id="WjA-hx-NMn">
                             <rect key="frame" x="85" y="10" width="150" height="150"/>
@@ -107,12 +108,12 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lre-yQ-CbQ">
-                                            <rect key="frame" x="111" y="5" width="175" height="50"/>
+                                            <rect key="frame" x="111" y="5" width="151" height="50"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go" enablesReturnKeyAutomatically="YES" textContentType="street-address"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBW-Cf-KNb">
-                                            <rect key="frame" x="291" y="18" width="24" height="24"/>
+                                            <rect key="frame" x="267" y="6" width="48" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="XBW-Cf-KNb" secondAttribute="height" id="Bqx-0e-4ts"/>
                                             </constraints>
@@ -202,34 +203,75 @@
                         <constraint firstItem="lop-6S-6WZ" firstAttribute="top" secondItem="MRd-Po-LIQ" secondAttribute="bottom" constant="10" id="t2w-D3-fO4"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-cM-Uv8">
-                    <rect key="frame" x="10" y="524" width="300" height="34"/>
-                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="34" id="J2W-4V-tNR"/>
-                    </constraints>
-                    <state key="normal" title="Add contact">
-                        <color key="titleColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="addContactTouchUpInside:" destination="-1" eventType="touchUpInside" id="fmR-EP-4Ug"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wF5-SW-9m7">
+                    <rect key="frame" x="10" y="490" width="300" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-cM-Uv8">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="J2W-4V-tNR"/>
+                            </constraints>
+                            <state key="normal" title="Thêm liên lạc">
+                                <color key="titleColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="modifyContactTouchUpInside:" destination="-1" eventType="touchUpInside" id="17f-O2-YFV"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0V-gY-Dvm">
+                            <rect key="frame" x="0.0" y="34" width="300" height="34"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecl-fH-wHG">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="34"/>
+                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="Xoá">
+                                        <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteContactTouchUpInside:" destination="-1" eventType="touchUpInside" id="P5j-vz-PZ2"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJl-vB-la1">
+                                    <rect key="frame" x="150" y="0.0" width="150" height="34"/>
+                                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="Thay đổi">
+                                        <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="modifyContactTouchUpInside:" destination="-1" eventType="touchUpInside" id="2It-gI-bT6"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="fJl-vB-la1" secondAttribute="bottom" id="4S5-VA-49e"/>
+                                <constraint firstItem="fJl-vB-la1" firstAttribute="width" secondItem="ecl-fH-wHG" secondAttribute="width" id="XDH-VT-F5e"/>
+                                <constraint firstItem="ecl-fH-wHG" firstAttribute="width" secondItem="V0V-gY-Dvm" secondAttribute="width" multiplier="0.5" id="XbX-BD-hHT"/>
+                                <constraint firstAttribute="trailing" secondItem="fJl-vB-la1" secondAttribute="trailing" id="anb-mN-u2R"/>
+                                <constraint firstItem="fJl-vB-la1" firstAttribute="top" secondItem="V0V-gY-Dvm" secondAttribute="top" id="jVi-lP-gWY"/>
+                                <constraint firstAttribute="bottom" secondItem="ecl-fH-wHG" secondAttribute="bottom" id="jjw-aN-vPq"/>
+                                <constraint firstItem="ecl-fH-wHG" firstAttribute="top" secondItem="V0V-gY-Dvm" secondAttribute="top" id="ogi-zw-5AM"/>
+                                <constraint firstItem="ecl-fH-wHG" firstAttribute="leading" secondItem="V0V-gY-Dvm" secondAttribute="leading" id="rWV-sJ-jTk"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="hpU-cM-Uv8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="3lQ-kt-h4x"/>
                 <constraint firstItem="Y0C-pH-iTJ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="BZR-xm-ruN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hpU-cM-Uv8" secondAttribute="bottom" constant="10" id="Byd-ox-7p3"/>
+                <constraint firstItem="wF5-SW-9m7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="DqJ-g3-Sb8"/>
                 <constraint firstItem="hMl-mN-48n" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JYH-M7-oIL"/>
                 <constraint firstItem="hMl-mN-48n" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JgW-Hj-SXK"/>
                 <constraint firstItem="zdh-hd-Dg8" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" id="R9D-0g-dvM"/>
                 <constraint firstItem="zdh-hd-Dg8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ZjP-bY-aF8"/>
                 <constraint firstItem="MRd-Po-LIQ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="aab-YH-JGh"/>
-                <constraint firstItem="hpU-cM-Uv8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="cwj-mO-0nh"/>
+                <constraint firstItem="wF5-SW-9m7" firstAttribute="top" secondItem="hMl-mN-48n" secondAttribute="bottom" constant="10" id="cPF-FY-sMy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hMl-mN-48n" secondAttribute="trailing" id="i0w-aD-8G9"/>
-                <constraint firstItem="hpU-cM-Uv8" firstAttribute="top" secondItem="hMl-mN-48n" secondAttribute="bottom" constant="10" id="iP2-HQ-kyI"/>
                 <constraint firstItem="WjA-hx-NMn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ofc-Gf-gXO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wF5-SW-9m7" secondAttribute="bottom" constant="10" id="pRO-gb-8J1"/>
+                <constraint firstItem="wF5-SW-9m7" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="rZb-Hx-cIH"/>
                 <constraint firstItem="lop-6S-6WZ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="zX3-QW-tF0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

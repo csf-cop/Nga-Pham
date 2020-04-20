@@ -1,5 +1,5 @@
 //
-//  AddJuiceViewController.swift
+//  ModifyJuiceViewController.swift
 //  Nga Pham
 //
 //  Created by Tuan Dang Q. on 3/19/20.
@@ -10,7 +10,7 @@ import UIKit
 import TLPhotoPicker
 import Photos
 
-final class AddJuiceViewController: UIViewController {
+final class ModifyJuiceViewController: ViewController {
 
     @IBOutlet private weak var juiceImageView: UIImageView!
     @IBOutlet private weak var addJuiceButton: UIButton!
@@ -18,8 +18,8 @@ final class AddJuiceViewController: UIViewController {
     @IBOutlet private weak var juiceNoteTextView: UITextView!
     @IBOutlet private weak var imageDescriptionStackView: UIStackView!
     @IBOutlet private weak var unitMersurePicker: PickerViewTextField!
+    @IBOutlet private weak var modifyView: UIView!
 
-    var viewModel: AddJuiceViewModel = AddJuiceViewModel()
     private lazy var imagePicker: UIImagePickerController = UIImagePickerController()
     private var isJuiceImage: Bool = true
 
@@ -27,21 +27,23 @@ final class AddJuiceViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        title = "Thêm hoa quả"
-        juiceNameTextField.delegate = self
+        title = "Hoa Quả"
+        configUI()
         configGesture()
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
         viewModel.handleErrorMessage = { [weak self] error in
             self?.showError(error)
         }
     }
 
-    @IBAction func addJuiceTouchUpInside(_ sender: UIButton) {
+    @IBAction func modifyJuiceTouchUpInside(_ sender: UIButton) {
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
         let juiceName: String = juiceNameTextField.text.unwrapped(or: "")
         let juiceDescription: String = juiceNoteTextView.text.unwrapped(or: "")
         let unit: String = unitMersurePicker.text.unwrapped(or: "")
-        viewModel.addJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
+        viewModel.modifyJuice(name: juiceName, description: juiceDescription, unit: unit) { [] sussess in
             if sussess {
-                self.dismiss(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
@@ -66,9 +68,49 @@ final class AddJuiceViewController: UIViewController {
     @objc private func uploadPhoto(sender: UITapGestureRecognizer) {
         accessToLibrary(isJuiceImage: false)
     }
+    
+    @IBAction func deleteButtonTouchUpInside(_ sender: UIButton) {
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
+        showIndicator()
+        viewModel.deleteJuice { [] isSuccess in
+            self.hideIndicator()
+            if isSuccess {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+    }
 }
 
-extension AddJuiceViewController {
+extension ModifyJuiceViewController {
+    private func configUI() {
+        juiceNameTextField.delegate = self
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
+        if viewModel.mode == .add {
+            modifyView.isHidden = true
+            addJuiceButton.isHidden = false
+        } else {
+            modifyView.isHidden = false
+            addJuiceButton.isHidden = true
+            juiceNameTextField.text = viewModel.juice.juiceName
+            juiceNoteTextView.text = viewModel.juice.juiceDescription
+            if let imageData: Data = viewModel.juice.juiceImage {
+                juiceImageView.image = UIImage(data: imageData)
+            } else {
+                juiceImageView.image = #imageLiteral(resourceName: "img_no_image")
+            }
+            let photos: [UIImageView] = imageDescriptionStackView.arrangedSubviews.compactMap({ $0 as? UIImageView })
+            for pic in photos {
+                if let data: Data = viewModel.juice.juicePhotos[safe: pic.tag].unwrapped(or: #imageLiteral(resourceName: "img_no_image").toData()) {
+                    pic.image = UIImage(data: data)
+                } else {
+                    pic.image = #imageLiteral(resourceName: "img_no_image")
+                }
+            }
+            #warning("Load more Image")
+//            imageDescriptionStackView
+        }
+    }
+
     private func configGesture() {
         let gesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
         juiceImageView.addGestureRecognizer(gesture)
@@ -86,7 +128,7 @@ extension AddJuiceViewController {
         switch photos {
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization ({ [weak self] status in
-                guard let this: AddJuiceViewController = self else { return }
+                guard let this: ModifyJuiceViewController = self else { return }
                 if status == .authorized {
                     this.presentLibraryPhoto()
                 }
@@ -134,7 +176,7 @@ extension AddJuiceViewController {
     private func accessToCamera() {
         if AVCaptureDevice.authorizationStatus(for: .video) == .notDetermined {
             AVCaptureDevice.requestAccess(for: .video) { [weak self] cameraGranted -> Void in
-                guard let this: AddJuiceViewController = self else { return }
+                guard let this: ModifyJuiceViewController = self else { return }
                 if cameraGranted {
                     this.presentCamera()
                 }
@@ -165,12 +207,14 @@ extension AddJuiceViewController {
 }
 
 // MARK: TLPhotosPickerViewControllerDelegate
-extension AddJuiceViewController: TLPhotosPickerViewControllerDelegate {
+extension ModifyJuiceViewController: TLPhotosPickerViewControllerDelegate {
     func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
         viewModel.getSelectedImage(isJuiceImage: isJuiceImage, selectedAssets: withTLPHAssets)
     }
 
     func dismissComplete() {
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
         if isJuiceImage {
             if !viewModel.juiceImage.isEmpty {
                 juiceImageView.image = viewModel.juiceImage[0]
@@ -185,8 +229,9 @@ extension AddJuiceViewController: TLPhotosPickerViewControllerDelegate {
 }
 
 // MARK: - UINavigationControllerDelegate, UIImagePickerControllerDelegate
-extension AddJuiceViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension ModifyJuiceViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let viewModel: ModifyJuiceViewModel = viewModel as? ModifyJuiceViewModel else { return }
         if let image: UIImage = info[.originalImage] as? UIImage {
             viewModel.takePhoto(image: image)
         } else {
@@ -199,7 +244,7 @@ extension AddJuiceViewController: UINavigationControllerDelegate, UIImagePickerC
     }
 }
 
-extension AddJuiceViewController {
+extension ModifyJuiceViewController {
     struct CameraConfig {
         static let alertButtonTitles: [String] = [App.Strings.cancel, App.Strings.setting]
         static let typeButtonTitles: [String] = [App.Strings.library, App.Strings.camera]
@@ -212,7 +257,7 @@ extension AddJuiceViewController {
     }
 }
 
-extension AddJuiceViewController: UITextFieldDelegate {
+extension ModifyJuiceViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

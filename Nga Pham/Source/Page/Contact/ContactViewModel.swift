@@ -19,12 +19,13 @@ extension ContactViewModel {
     }
 
     func modelForCell(at: IndexPath) -> ContactCellModel {
-        let contact: ContactModel = contactsModel[safe: at.row].unwrapped(or: ContactModel(contact: CoreContact(), photo: nil))
-        return ContactCellModel(model: contact)
+        guard let contact: ContactModel = contactsModel[safe: at.row] else { return ContactCellModel() }
+        return ContactCellModel(id: contact.avatarId, name: contact.fullName, image: contact.image)
     }
 
-    func contactModel(at: IndexPath) -> ContactDetailViewModel {
-        return ContactDetailViewModel(model: contactsModel[safe: at.row].unwrapped(or: ContactModel()))
+    func contactModel(at: IndexPath) -> ModifyContactViewModel {
+        guard let model: ContactModel = contactsModel[safe: at.row] else { return ModifyContactViewModel() }
+        return ModifyContactViewModel(model: model, mode: .edit)
     }
 
     func loadContactsData(completion: @escaping Completed) {
@@ -45,15 +46,15 @@ extension ContactViewModel {
     private func generateModel(data: [CoreContact]) {
         if data.isEmpty { return }
         contactsModel = []
-        let imageIds: [String] = data.map { $0.avatarId.unwrapped(or: "") }
+        let imageIds: [String] = data.map { $0.avatarId.unwrapped(or: "") }.removeDuplicates().filter({ $0.isEmpty == false })
         CoreImage.all(predicate: NSPredicate(format: "id in %@", imageIds), success: { photos in
             guard let photos: [CoreImage] = photos as? [CoreImage] else {
                 return
             }
             data.forEach { contact in
-                let model: ContactModel = ContactModel()
-                model.contact = contact
-                model.avatar = photos.first(where: {$0.id.elementsEqual(contact.avatarId.unwrapped(or: ""))})
+                let avatar: CoreImage? = photos.first(where: {$0.id.elementsEqual(contact.avatarId.unwrapped(or: ""))})
+                var model: ContactModel = ContactModel(core: contact)
+                model.image = avatar?.imageData
                 self.contactsModel.append(model)
             }
         }) { (err) in

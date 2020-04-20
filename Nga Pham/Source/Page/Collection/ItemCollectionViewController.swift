@@ -23,6 +23,7 @@ final class ItemCollectionViewController: ViewController {
         viewModel.handleErrorMessage = { [weak self] error in
             self?.showError(error)
         }
+        loadTableViewData()
     }
 }
 
@@ -37,8 +38,19 @@ extension ItemCollectionViewController {
 
     @objc private func orderJuice(sender: UITapGestureRecognizer) {
         let orderJuiceVC: OrderJuiceViewController = OrderJuiceViewController()
-        orderJuiceVC.viewModel = OrderJuiceViewModel()
+        orderJuiceVC.viewModel = OrderJuiceViewModel(mode: .add)
         navigationController?.pushViewController(orderJuiceVC, animated: true)
+    }
+
+    private func loadTableViewData() {
+        showIndicator()
+        guard let viewModel: ItemCollectionViewModel = viewModel as? ItemCollectionViewModel else { return }
+        viewModel.loadOrdersData { [] isSuccess in
+            self.hideIndicator()
+            if isSuccess {
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 

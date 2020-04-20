@@ -11,7 +11,7 @@ import Foundation
 final class ItemCollectionCellModel {
     let description: String
 
-    init(model: CoreOrder) {
-        description = model.contactName.unwrapped(or: "default")
+    init(description: String) {
+        self.description = description
     }
 }

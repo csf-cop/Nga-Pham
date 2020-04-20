@@ -13,9 +13,10 @@ let kScreenBounds = UIScreen.main.bounds
 
 struct App {
     enum Mode: String {
-        case release
-        case debug
-        case staging
+        case add
+        case detail
+        case edit
+        case delete
     }
 
     static let gregorianCalendar: Calendar = {

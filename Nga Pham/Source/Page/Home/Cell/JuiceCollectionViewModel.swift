@@ -10,11 +10,13 @@ import Foundation
 import UIKit.UIImage
 
 final class JuiceCollectionViewModel {
+    let id: String
     let juiceDescription: String
-    let juiceImage: CoreImage?
+    let juiceImage: Data?
 
-    init(model: JuiceModel) {
-        juiceDescription = model.juice.juiceName
-        juiceImage = model.avatar
+    init(id: String = "", description: String = "", image: Data? = nil) {
+        self.id = id
+        self.juiceDescription = description
+        self.juiceImage = image
     }
 }

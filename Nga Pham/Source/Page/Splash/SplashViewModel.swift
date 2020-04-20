@@ -23,7 +23,7 @@ extension SplashViewModel {
             }
             switch result {
             case .success(let value):
-                this.syncOrder = [value]
+                this.syncOrder = value
                 print("Response: \(this.syncOrder)")
                 completion(true)
             case .error(let e):
